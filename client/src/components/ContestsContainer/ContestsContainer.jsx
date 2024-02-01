@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import styles from './ContestContainer.module.sass';
+import styles from './ContestsContainer.module.sass';
 import Spinner from '../Spinner/Spinner';
 
 class ContestsContainer extends React.Component {

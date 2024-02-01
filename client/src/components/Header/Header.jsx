@@ -6,6 +6,8 @@ import CONSTANTS from '../../constants';
 import { clearUserStore } from '../../store/slices/userSlice';
 import { getUser } from '../../store/slices/userSlice';
 
+
+
 class Header extends React.Component {
   componentDidMount () {
     if (!this.props.data) {
