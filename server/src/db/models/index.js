@@ -37,32 +37,6 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
-db['Contest'].belongsTo(db['User'], {
-  foreignKey: 'userId',
-  sourceKey: 'id',
-});
-db['Contest'].hasMany(db['Offer'], {
-  foreignKey: 'contestId',
-  targetKey: 'id',
-});
-
-db['User'].hasMany(db['Offer'], { foreignKey: 'userId', targetKey: 'id' });
-db['User'].hasMany(db['Contest'], { foreignKey: 'userId', targetKey: 'id' });
-db['User'].hasMany(db['Rating'], { foreignKey: 'userId', targetKey: 'id' });
-
-db['Offer'].belongsTo(db['User'], { foreignKey: 'userId', sourceKey: 'id' });
-db['Offer'].belongsTo(db['Contest'], {
-  foreignKey: 'contestId',
-  sourceKey: 'id',
-});
-db['Offer'].hasOne(db['Rating'], { foreignKey: 'offerId', targetKey: 'id' });
-
-db['Rating'].belongsTo(db['User'], { foreignKey: 'userId', targetKey: 'id' });
-db['Rating'].belongsTo(db['Offer'], {
-  foreignKey: 'offerId',
-  targetKey: 'id',
-});
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

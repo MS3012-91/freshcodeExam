@@ -27,5 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  Rating.associate = function (models) {
+    Rating.belongsTo(models.User, { foreignKey: 'userId' });
+    Rating.belongsTo(models.Offer, { foreignKey: 'offerId' });
+  };
+
   return Rating;
 };

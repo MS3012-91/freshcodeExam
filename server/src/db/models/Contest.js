@@ -87,8 +87,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       timestamps: false,
-    }
+    },
   );
+
+  Contest.associate = function (models) {
+    Contest.belongsTo(models.User, { foreignKey: 'userId' });
+    Contest.hasMany(models.Offer, { foreignKey: 'contestId' });
+  };
 
   return Contest;
 };
