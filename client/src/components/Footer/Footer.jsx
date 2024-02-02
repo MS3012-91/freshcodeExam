@@ -20,11 +20,11 @@ class Footer extends Component {
 
   render () {
     return (
-      <div className={styles.footerContainer}>
+      <footer className={styles.footerContainer}>
         <div className={styles.footerTop}>
           <div>{this.topFooterRender()}</div>
         </div>
-      </div>
+      </footer>
     );
   }
 }

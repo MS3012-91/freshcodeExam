@@ -100,7 +100,7 @@ class Header extends React.Component {
       return null;
     }
     return (
-      <div className={styles.headerContainer}>
+      <header className={styles.headerContainer}>
         <div className={styles.fixedHeader}>
           <span className={styles.info}>
             Squadhelp recognized as one of the Most Innovative Companies by Inc
@@ -272,7 +272,7 @@ class Header extends React.Component {
             )}
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }
