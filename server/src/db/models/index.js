@@ -37,28 +37,28 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
-db['Contests'].belongsTo(db['Users'], {
+db['Contest'].belongsTo(db['User'], {
   foreignKey: 'userId',
   sourceKey: 'id',
 });
-db['Contests'].hasMany(db['Offers'], {
+db['Contest'].hasMany(db['Offer'], {
   foreignKey: 'contestId',
   targetKey: 'id',
 });
 
-db['Users'].hasMany(db['Offers'], { foreignKey: 'userId', targetKey: 'id' });
-db['Users'].hasMany(db['Contests'], { foreignKey: 'userId', targetKey: 'id' });
-db['Users'].hasMany(db['Ratings'], { foreignKey: 'userId', targetKey: 'id' });
+db['User'].hasMany(db['Offer'], { foreignKey: 'userId', targetKey: 'id' });
+db['User'].hasMany(db['Contest'], { foreignKey: 'userId', targetKey: 'id' });
+db['User'].hasMany(db['Rating'], { foreignKey: 'userId', targetKey: 'id' });
 
-db['Offers'].belongsTo(db['Users'], { foreignKey: 'userId', sourceKey: 'id' });
-db['Offers'].belongsTo(db['Contests'], {
+db['Offer'].belongsTo(db['User'], { foreignKey: 'userId', sourceKey: 'id' });
+db['Offer'].belongsTo(db['Contest'], {
   foreignKey: 'contestId',
   sourceKey: 'id',
 });
-db['Offers'].hasOne(db['Ratings'], { foreignKey: 'offerId', targetKey: 'id' });
+db['Offer'].hasOne(db['Rating'], { foreignKey: 'offerId', targetKey: 'id' });
 
-db['Ratings'].belongsTo(db['Users'], { foreignKey: 'userId', targetKey: 'id' });
-db['Ratings'].belongsTo(db['Offers'], {
+db['Rating'].belongsTo(db['User'], { foreignKey: 'userId', targetKey: 'id' });
+db['Rating'].belongsTo(db['Offer'], {
   foreignKey: 'offerId',
   targetKey: 'id',
 });

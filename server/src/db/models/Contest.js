@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Contest = sequelize.define(
-    'Contests',
+    'Contest',
     {
       id: {
         allowNull: false,

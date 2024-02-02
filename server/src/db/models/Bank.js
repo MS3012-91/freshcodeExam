@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'Banks',
+    'Bank',
     {
       cardNumber: {
         type: DataTypes.STRING,

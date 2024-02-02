@@ -1,7 +1,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .createTable('Banks', {
+      .createTable('banks', {
         cardNumber: {
           type: Sequelize.STRING,
           allowNull: false,
@@ -38,6 +38,6 @@ module.exports = {
       );
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Banks');
+    return queryInterface.dropTable('banks');
   },
 };
