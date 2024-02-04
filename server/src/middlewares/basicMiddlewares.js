@@ -1,4 +1,4 @@
-const db = require('../db/models');
+const db = require('../db/models/sequelizeModels');
 const NotFound = require('../errors/UserNotFoundError');
 const RightsError = require('../errors/RightsError');
 const ServerError = require('../errors/ServerError');

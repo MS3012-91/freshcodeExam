@@ -1,4 +1,4 @@
-const bd = require('../db/models');
+const bd = require('../db/models/sequelizeModels');
 const CONSTANTS = require('../constants');
 
 module.exports.createWhereForAllContests = (

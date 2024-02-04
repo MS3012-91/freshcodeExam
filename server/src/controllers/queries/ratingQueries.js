@@ -1,4 +1,4 @@
-const db = require('../../db/models');
+const db = require('../../db/models/sequelizeModels');
 const ServerError = require('../../errors/ServerError');
 
 module.exports.updateRating = async (data, predicate, transaction) => {
