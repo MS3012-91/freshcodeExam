@@ -1,21 +1,21 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('ratings', {
-      offerId: {
+      offer_id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Offers',
+          model: 'offers',
           key: 'id',
         },
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id',
         },
       },

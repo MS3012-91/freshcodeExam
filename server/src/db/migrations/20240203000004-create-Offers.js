@@ -7,19 +7,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id',
         },
       },
-      contestId: {
+      contest_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Contests',
+          model: 'contests',
           key: 'id',
         },
       },
@@ -27,11 +27,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      fileName: {
+      file_name: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      originalFileName: {
+      original_file_name: {
         type: Sequelize.STRING,
         allowNull: true,
       },

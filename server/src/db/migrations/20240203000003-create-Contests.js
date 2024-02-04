@@ -7,15 +7,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      contestType: {
+      contest_type: {
         allowNull: false,
         type: Sequelize.ENUM('name', 'tagline', 'logo'),
       },
-      fileName: {
+      file_name: {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      originalFileName: {
+      original_file_name: {
         allowNull: true,
         type: Sequelize.STRING,
       },
@@ -23,7 +23,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      typeOfName: {
+      type_of_name: {
         allowNull: true,
         type: Sequelize.STRING,
       },
@@ -31,23 +31,23 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      focusOfWork: {
+      focus_of_work: {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      targetCustomer: {
+      target_customer: {
         allowNull: true,
         type: Sequelize.TEXT,
       },
-      styleName: {
+      style_name: {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      nameVenture: {
+      name_venture: {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      typeOfTagline: {
+      type_of_tagline: {
         allowNull: true,
         type: Sequelize.STRING,
       },
@@ -55,7 +55,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      brandStyle: {
+      brand_style: {
         allowNull: true,
         type: Sequelize.STRING,
       },
@@ -63,7 +63,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL,
       },
-      createdAt: {
+      created_at: {
         allowNull: true,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
@@ -72,15 +72,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      orderId: {
+      order_id: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      userId: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id',
         },
       },

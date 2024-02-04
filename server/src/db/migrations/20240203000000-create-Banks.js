@@ -2,7 +2,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
       .createTable('banks', {
-        cardNumber: {
+        card_number: {
           type: Sequelize.STRING,
           allowNull: false,
           primaryKey: true,
@@ -26,7 +26,7 @@ module.exports = {
         },
       })
       .then(() =>
-        queryInterface.addConstraint('Banks', {
+        queryInterface.addConstraint('banks', {
           type: 'check',
           fields: ['balance'],
           where: {

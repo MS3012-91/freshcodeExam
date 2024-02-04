@@ -8,15 +8,15 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        firstName: {
+        first_name: {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        lastName: {
+        last_name: {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        displayName: {
+        display_name: {
           type: Sequelize.STRING,
           allowNull: false,
         },
@@ -43,7 +43,7 @@ module.exports = {
           allowNull: false,
           defaultValue: 0,
         },
-        accessToken: {
+        access_token: {
           type: Sequelize.TEXT,
           allowNull: true,
         },
