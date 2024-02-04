@@ -34,4 +34,4 @@ mongoose.set('debug', env === 'development');
 
 db.mongoose = mongoose;
 
-module.exports = mongoose;
+module.exports = db;

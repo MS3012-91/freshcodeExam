@@ -126,12 +126,12 @@ module.exports.payment = async (req, res, next) => {
       {
         balance: db.sequelize.literal(`
                 CASE
-            WHEN "cardNumber"='${req.body.number.replace(
+            WHEN "card_number"='${req.body.number.replace(
               / /g,
               ''
             )}' AND "cvc"='${req.body.cvc}' AND "expiry"='${req.body.expiry}'
                 THEN "balance"-${req.body.price}
-            WHEN "cardNumber"='${CONSTANTS.SQUADHELP_BANK_NUMBER}' AND "cvc"='${
+            WHEN "card_number"='${CONSTANTS.SQUADHELP_BANK_NUMBER}' AND "cvc"='${
           CONSTANTS.SQUADHELP_BANK_CVC
         }' AND "expiry"='${CONSTANTS.SQUADHELP_BANK_EXPIRY}'
                 THEN "balance"+${req.body.price} END
@@ -207,14 +207,14 @@ module.exports.cashout = async (req, res, next) => {
     await bankQueries.updateBankBalance(
       {
         balance: db.sequelize.literal(`CASE 
-                WHEN "cardNumber"='${req.body.number.replace(
+                WHEN "card_number"='${req.body.number.replace(
                   / /g,
                   ''
                 )}' AND "expiry"='${req.body.expiry}' AND "cvc"='${
           req.body.cvc
         }'
                     THEN "balance"+${req.body.sum}
-                WHEN "cardNumber"='${
+                WHEN "card_number"='${
                   CONSTANTS.SQUADHELP_BANK_NUMBER
                 }' AND "expiry"='${
           CONSTANTS.SQUADHELP_BANK_EXPIRY
