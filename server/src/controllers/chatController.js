@@ -1,6 +1,4 @@
-const Conversation = require('../db/models/mongoModels/Conversation');
-const Message = require('../db/models/mongoModels/Message');
-const Catalog = require('../db/models/mongoModels/Catalog');
+const { Conversation, Message, Catalog } = require('../db/models/mongoModels');
 const moment = require('moment');
 const db = require('../db/models/sequelizeModels');
 const userQueries = require('./queries/userQueries');
