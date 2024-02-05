@@ -1,14 +1,11 @@
 const express = require('express');
-const basicMiddlewares = require('../middlewares/basicMiddlewares');
-const contestController = require ('../controllers/contestController')
+const { basicMiddlewares } = require('../middlewares');
+const contestController = require('../controllers/contestController');
 const upload = require('../utils/fileUpload');
 
 const contestRouter = express.Router();
 
-contestRouter.post(
-  '/dataForContest',
-  contestController.dataForContest
-);
+contestRouter.post('/dataForContest', contestController.dataForContest);
 
 contestRouter.post(
   '/getCustomersContests',
@@ -27,10 +24,7 @@ contestRouter.post(
   contestController.getContests
 );
 
-contestRouter.get(
-  '/downloadFile/:fileName',
-  contestController.downloadFile
-);
+contestRouter.get('/downloadFile/:fileName', contestController.downloadFile);
 
 contestRouter.post(
   '/updateContest',

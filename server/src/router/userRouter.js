@@ -1,9 +1,6 @@
 const express = require('express');
-const hashPass = require('../middlewares/hashPassMiddle');
-const basicMiddlewares = require('../middlewares/basicMiddlewares');
+const { hashPass, basicMiddlewares, checkToken, validators } = require('../middlewares');
 const userController = require('../controllers/userController');
-const checkToken = require('../middlewares/checkToken');
-const validators = require('../middlewares/validators');
 const upload = require('../utils/fileUpload');
 
 const userRouter = express.Router();
