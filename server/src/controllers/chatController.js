@@ -70,7 +70,10 @@ const createMessage = (senderId, messageBody, conversationId) => {
 };
 
 module.exports.getChat = async (req, res, next) => {
-  const participants = [req.tokenData.userId, req.body.interlocutorId];
+  const { userId } = req.tokenData;
+  const { interlocutorId } = req.params;
+  const interlocutorNumber = parseInt(interlocutorId, 10);
+  const participants = [userId, interlocutorNumber];
   participants.sort(
     (participant1, participant2) => participant1 - participant2
   );
@@ -97,9 +100,8 @@ module.exports.getChat = async (req, res, next) => {
         },
       },
     ]);
-
     const interlocutor = await userQueries.findUser({
-      id: req.body.interlocutorId,
+      id: interlocutorId,
     });
     res.send({
       messages,
@@ -117,6 +119,24 @@ module.exports.getChat = async (req, res, next) => {
 };
 
 module.exports.getPreview = async (req, res, next) => {
+  const {userId} = req.tokenData;
+  try {
+    let conversations = await getConversations(userId, next);
+    const interlocutors = [];
+    conversations.forEach(conversation => {
+      interlocutors.push(
+        conversation.participants.find(participant => participant !== userId)
+      );
+    });
+    conversations = await getConversationData(interlocutors, conversations, next);
+    res.send(conversations);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getConversations = async (userId, next) => {
+  console.log('userId', userId)
   try {
     const conversations = await Message.aggregate([
       {
@@ -132,7 +152,7 @@ module.exports.getPreview = async (req, res, next) => {
       },
       {
         $match: {
-          'conversationData.participants': req.tokenData.userId,
+          'conversationData.participants': userId,
         },
       },
       {
@@ -151,15 +171,15 @@ module.exports.getPreview = async (req, res, next) => {
           favoriteList: { $first: '$conversationData.favoriteList' },
         },
       },
-    ]);
-    const interlocutors = [];
-    conversations.forEach(conversation => {
-      interlocutors.push(
-        conversation.participants.find(
-          participant => participant !== req.tokenData.userId
-        )
-      );
-    });
+    ]);;
+    return conversations;
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getConversationData = async (interlocutors, conversations, next) => {
+  try {
     const senders = await db.User.findAll({
       where: {
         id: interlocutors,
@@ -179,7 +199,7 @@ module.exports.getPreview = async (req, res, next) => {
         }
       });
     });
-    res.send(conversations);
+    return conversations;
   } catch (err) {
     next(err);
   }
