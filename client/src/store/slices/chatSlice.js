@@ -57,7 +57,7 @@ export const getDialogMessages = decorateAsyncThunk({
     const queryParams = payload.interlocutorId;
     const { data } = await restController.getDialog(queryParams);
     return data;
-  },
+  }
 });
 
 const getDialogMessagesExtraReducers = createExtraReducers({

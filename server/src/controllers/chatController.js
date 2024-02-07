@@ -64,6 +64,7 @@ const createOrUpdateConversation = async participants => {
     if (!conversation) {
       next(createError(400, 'Conversation not update'));
     }
+    return conversation
   } catch (err) {
     next(err);
   }
@@ -86,7 +87,7 @@ module.exports.getChat = async (req, res, next) => {
     (participant1, participant2) => participant1 - participant2
   );
   try {
-    const messages = await getMessages(participants);
+    const messages = await getMessages(participants, interlocutorId, next);
     const interlocutor = await userQueries.findUser({
       id: interlocutorId,
     });
@@ -105,7 +106,7 @@ module.exports.getChat = async (req, res, next) => {
   }
 };
 
-const getMessages = async participants => {
+const getMessages = async (participants, interlocutorId, next) => {
   try {
     const messages = await Message.aggregate([
       {
