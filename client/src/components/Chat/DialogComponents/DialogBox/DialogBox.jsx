@@ -76,7 +76,7 @@ const DialogBox = props => {
             onClick={event =>
               changeBlackList(
                 {
-                  participants,
+                  chatId: _id,
                   blackListFlag: !isBlocked,
                 },
                 event

@@ -142,7 +142,8 @@ const changeChatFavoriteExtraReducers = createExtraReducers({
 export const changeChatBlock = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/changeChatBlock`,
   thunk: async payload => {
-    const { data } = await restController.changeChatBlock(payload);
+    const { chatId, blackListFlag } = payload;
+    const { data } = await restController.changeChatBlock(chatId, blackListFlag );
     return data;
   },
 });

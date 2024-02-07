@@ -14,7 +14,7 @@ export const dataForContest = data => http.post('contest/dataForContest', data);
 export const cashOut = data => http.post('user/cashout', data);
 export const updateUser = data => http.post('user/updateUser', data);
 export const changeChatFavorite = data => http.post('chat/favorite', data);
-export const changeChatBlock = data => http.post('chat/blackList', data);
+
 export const getCatalogList = data => http.post('chat/getCatalogs', data);
 export const addChatToCatalog = data => http.post('chat/addNewChatToCatalog', data);
 export const createCatalog = data => http.post('chat/createCatalog', data);
@@ -64,4 +64,4 @@ export const getContestById = data =>
 export const newMessage = data => http.post('chat/newMessage', data);
 export const getDialog = (queryParams) => http.get(`chat/getChat${queryParams}`);
 export const getPreviewChat = () => http.get('chat/getPreview');
-
+export const changeChatBlock = (chatId, blackListFlag) => http.patch(`chat/blackList${chatId}`, {blackListFlag});
