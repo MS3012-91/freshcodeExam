@@ -9,7 +9,7 @@ chatRouter.get('/getChat:interlocutorId', chatController.getChat);
 
 chatRouter.get('/getPreview', chatController.getPreview);
 
-chatRouter.post('/blackList', chatController.blackList);
+chatRouter.patch('/blackList:chatId', chatController.blackList);
 
 chatRouter.post('/favorite', chatController.favoriteChat);
 
