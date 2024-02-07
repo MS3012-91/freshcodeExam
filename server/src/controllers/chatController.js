@@ -83,6 +83,10 @@ module.exports.getChat = async (req, res, next) => {
   const { interlocutorId } = req.params;
   const interlocutorNumber = parseInt(interlocutorId, 10);
   const participants = [userId, interlocutorNumber];
+  const { userId } = req.tokenData;
+  const { interlocutorId } = req.params;
+  const interlocutorNumber = parseInt(interlocutorId, 10);
+  const participants = [userId, interlocutorNumber];
   participants.sort(
     (participant1, participant2) => participant1 - participant2
   );
