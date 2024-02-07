@@ -1,5 +1,6 @@
 const { Conversation, Message, Catalog } = require('../db/models/mongoModels');
 const moment = require('moment');
+const createError = require('http-errors');
 const db = require('../db/models/sequelizeModels');
 const userQueries = require('./queries/userQueries');
 const controller = require('../socketInit');
@@ -47,7 +48,8 @@ module.exports.addMessage = async (req, res, next) => {
 };
 
 const createOrUpdateConversation = async participants => {
-  return await Conversation.findOneAndUpdate(
+  try {
+    const conversation = await Conversation.findOneAndUpdate(
     {
       participants,
     },
@@ -58,7 +60,14 @@ const createOrUpdateConversation = async participants => {
       setDefaultsOnInsert: true,
       useFindAndModify: false,
     }
-  );
+    );
+    if (!conversation) {
+      next(createError(400, 'Conversation not update'));
+    }
+  } 
+  catch (err) {
+next (err)
+  }
 };
 
 const createMessage = (senderId, messageBody, conversationId) => {
@@ -78,28 +87,7 @@ module.exports.getChat = async (req, res, next) => {
     (participant1, participant2) => participant1 - participant2
   );
   try {
-    const messages = await Message.aggregate([
-      {
-        $lookup: {
-          from: 'conversations',
-          localField: 'conversation',
-          foreignField: '_id',
-          as: 'conversationData',
-        },
-      },
-      { $match: { 'conversationData.participants': participants } },
-      { $sort: { createdAt: 1 } },
-      {
-        $project: {
-          _id: 1,
-          sender: 1,
-          body: 1,
-          conversation: 1,
-          createdAt: 1,
-          updatedAt: 1,
-        },
-      },
-    ]);
+    const messages = await getMessages(participants);
     const interlocutor = await userQueries.findUser({
       id: interlocutorId,
     });
@@ -117,6 +105,38 @@ module.exports.getChat = async (req, res, next) => {
     next(err);
   }
 };
+
+const getMessages = async (participants) => {
+  try {
+    const messages = await Message.aggregate([
+    {
+      $lookup: {
+        from: 'conversations',
+        localField: 'conversation',
+        foreignField: '_id',
+        as: 'conversationData',
+      },
+    },
+    { $match: { 'conversationData.participants': participants } },
+    { $sort: { createdAt: 1 } },
+    {
+      $project: {
+        _id: 1,
+        sender: 1,
+        body: 1,
+        conversation: 1,
+        createdAt: 1,
+        updatedAt: 1,
+      },
+      },
+    ]);
+    if (!messages.length) {
+      next(createError(404, 'Messages not found'));
+    }
+    return messages;
+  }
+catch (err) {next (err)} 
+}
 
 module.exports.getPreview = async (req, res, next) => {
   const {userId} = req.tokenData;
@@ -170,7 +190,10 @@ const getConversations = async (userId, next) => {
           favoriteList: { $first: '$conversationData.favoriteList' },
         },
       },
-    ]);;
+    ]);
+    if (!conversations.length) {
+      next (createError (404, 'Conversations not found'))
+    }
     return conversations;
   } catch (err) {
     next(err);
@@ -185,6 +208,9 @@ const getConversationData = async (interlocutors, conversations, next) => {
       },
       attributes: ['id', 'firstName', 'lastName', 'displayName', 'avatar'],
     });
+    if (!senders.length) {
+      createError(404, 'Senders not found')
+    }
     conversations.forEach(conversation => {
       senders.forEach(sender => {
         if (conversation.participants.includes(sender.dataValues.id)) {
@@ -205,21 +231,26 @@ const getConversationData = async (interlocutors, conversations, next) => {
 };
 
 module.exports.blackList = async (req, res, next) => {
+  const { participants, blackListFlag } = req.body;
+  const { userId } = req.tokenData;
   const predicate =
-    'blackList.' + req.body.participants.indexOf(req.tokenData.userId);
+    'blackList.' + participants.indexOf(userId);
   try {
     const chat = await Conversation.findOneAndUpdate(
-      { participants: req.body.participants },
-      { $set: { [predicate]: req.body.blackListFlag } },
+      { participants },
+      { $set: { [predicate]: blackListFlag } },
       { new: true }
     );
-    res.send(chat);
-    const interlocutorId = req.body.participants.filter(
-      participant => participant !== req.tokenData.userId
+    if (!chat) {
+      next(createError(404, 'Chat not found'))
+    }
+    const interlocutorId = participants.filter(
+      participant => participant !== userId
     )[0];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
+    res.send(chat);   
   } catch (err) {
-    res.send(err);
+   next(err);
   }
 };
 
