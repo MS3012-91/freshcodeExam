@@ -76,7 +76,6 @@ const ChatHeader = props => {
               onClick={event =>
                 changeBlackList(
                   {
-                    participants: chatData.participants,
                     blackListFlag: !isBlocked(chatData, userId),
                   },
                   event

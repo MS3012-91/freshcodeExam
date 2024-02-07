@@ -50,23 +50,22 @@ module.exports.addMessage = async (req, res, next) => {
 const createOrUpdateConversation = async participants => {
   try {
     const conversation = await Conversation.findOneAndUpdate(
-    {
-      participants,
-    },
-    { participants, blackList: [false, false], favoriteList: [false, false] },
-    {
-      upsert: true,
-      new: true,
-      setDefaultsOnInsert: true,
-      useFindAndModify: false,
-    }
+      {
+        participants,
+      },
+      { participants, blackList: [false, false], favoriteList: [false, false] },
+      {
+        upsert: true,
+        new: true,
+        setDefaultsOnInsert: true,
+        useFindAndModify: false,
+      }
     );
     if (!conversation) {
       next(createError(400, 'Conversation not update'));
     }
-  } 
-  catch (err) {
-next (err)
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -106,40 +105,41 @@ module.exports.getChat = async (req, res, next) => {
   }
 };
 
-const getMessages = async (participants) => {
+const getMessages = async participants => {
   try {
     const messages = await Message.aggregate([
-    {
-      $lookup: {
-        from: 'conversations',
-        localField: 'conversation',
-        foreignField: '_id',
-        as: 'conversationData',
+      {
+        $lookup: {
+          from: 'conversations',
+          localField: 'conversation',
+          foreignField: '_id',
+          as: 'conversationData',
+        },
       },
-    },
-    { $match: { 'conversationData.participants': participants } },
-    { $sort: { createdAt: 1 } },
-    {
-      $project: {
-        _id: 1,
-        sender: 1,
-        body: 1,
-        conversation: 1,
-        createdAt: 1,
-        updatedAt: 1,
-      },
+      { $match: { 'conversationData.participants': participants } },
+      { $sort: { createdAt: 1 } },
+      {
+        $project: {
+          _id: 1,
+          sender: 1,
+          body: 1,
+          conversation: 1,
+          createdAt: 1,
+          updatedAt: 1,
+        },
       },
     ]);
     if (!messages.length) {
       next(createError(404, 'Messages not found'));
     }
     return messages;
+  } catch (err) {
+    next(err);
   }
-catch (err) {next (err)} 
-}
+};
 
 module.exports.getPreview = async (req, res, next) => {
-  const {userId} = req.tokenData;
+  const { userId } = req.tokenData;
   try {
     let conversations = await getConversations(userId, next);
     const interlocutors = [];
@@ -148,7 +148,11 @@ module.exports.getPreview = async (req, res, next) => {
         conversation.participants.find(participant => participant !== userId)
       );
     });
-    conversations = await getConversationData(interlocutors, conversations, next);
+    conversations = await getConversationData(
+      interlocutors,
+      conversations,
+      next
+    );
     res.send(conversations);
   } catch (err) {
     next(err);
@@ -192,7 +196,7 @@ const getConversations = async (userId, next) => {
       },
     ]);
     if (!conversations.length) {
-      next (createError (404, 'Conversations not found'))
+      next(createError(404, 'Conversations not found'));
     }
     return conversations;
   } catch (err) {
@@ -209,7 +213,7 @@ const getConversationData = async (interlocutors, conversations, next) => {
       attributes: ['id', 'firstName', 'lastName', 'displayName', 'avatar'],
     });
     if (!senders.length) {
-      createError(404, 'Senders not found')
+      createError(404, 'Senders not found');
     }
     conversations.forEach(conversation => {
       senders.forEach(sender => {
@@ -231,26 +235,36 @@ const getConversationData = async (interlocutors, conversations, next) => {
 };
 
 module.exports.blackList = async (req, res, next) => {
-  const { participants, blackListFlag } = req.body;
+  const { chatId } = req.params;
+  const { blackListFlag } = req.body;
   const { userId } = req.tokenData;
-  const predicate =
-    'blackList.' + participants.indexOf(userId);
+  let conversation, participants;
+  try {
+    conversation = await Conversation.findById(chatId);
+    if (!conversation) {
+      next(createError(400, 'Conversation not found'));
+    }
+    participants = conversation.participants;
+  } catch (err) {
+    next(err);
+  }
+  const predicate = 'blackList.' + participants.indexOf(userId);
   try {
     const chat = await Conversation.findOneAndUpdate(
-      { participants },
+      { _id: chatId },
       { $set: { [predicate]: blackListFlag } },
       { new: true }
     );
     if (!chat) {
-      next(createError(404, 'Chat not found'))
+      next(createError(404, 'Chat not found'));
     }
     const interlocutorId = participants.filter(
       participant => participant !== userId
     )[0];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
-    res.send(chat);   
+    res.send(chat);
   } catch (err) {
-   next(err);
+    next(err);
   }
 };
 
