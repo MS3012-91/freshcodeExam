@@ -14,7 +14,10 @@ module.exports.addMessage = async (req, res, next) => {
     (participant1, participant2) => participant1 - participant2
   );
   try {
-    const newConversation = await createOrUpdateConversation(participants, next);
+    const newConversation = await createOrUpdateConversation(
+      participants,
+      next
+    );
     const conversationId = newConversation._id;
     const message = createMessage(senderId, messageBody, conversationId);
     await message.save();
@@ -64,7 +67,7 @@ const createOrUpdateConversation = async (participants, next) => {
     if (!conversation) {
       next(createError(400, 'Conversation not update'));
     }
-    return conversation
+    return conversation;
   } catch (err) {
     next(err);
   }
@@ -246,17 +249,40 @@ module.exports.blackList = async (req, res, next) => {
   const { chatId } = req.params;
   const { blackListFlag } = req.body;
   const { userId } = req.tokenData;
-  let conversation, participants;
+  const participants = await getParticipants(chatId, next);
+  const predicate = 'blackList.' + participants.indexOf(userId);
+  const chat = await getChat(
+    chatId,
+    predicate,
+    userId,
+    blackListFlag,
+    participants,
+    next
+  );
+  res.send(chat);
+};
+
+const getParticipants = async (chatId, next) => {
   try {
-    conversation = await Conversation.findById(chatId);
+    const conversation = await Conversation.findById(chatId);
     if (!conversation) {
       next(createError(400, 'Conversation not found'));
     }
-    participants = conversation.participants;
+    const participants = await conversation.participants;
+    return participants;
   } catch (err) {
     next(err);
   }
-  const predicate = 'blackList.' + participants.indexOf(userId);
+};
+
+const getChat = async (
+  chatId,
+  predicate,
+  userId,
+  blackListFlag,
+  participants,
+  next
+) => {
   try {
     const chat = await Conversation.findOneAndUpdate(
       { _id: chatId },
@@ -270,7 +296,7 @@ module.exports.blackList = async (req, res, next) => {
       participant => participant !== userId
     )[0];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
-    res.send(chat);
+    return chat;
   } catch (err) {
     next(err);
   }

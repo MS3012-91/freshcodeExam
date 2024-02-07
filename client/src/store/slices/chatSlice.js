@@ -147,6 +147,7 @@ export const changeChatBlock = decorateAsyncThunk({
       chatId,
       blackListFlag
     );
+    console.log('data', data);
     return data;
   },
 });
