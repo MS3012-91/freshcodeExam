@@ -200,6 +200,7 @@ const getConversationData = async (interlocutors, conversations, next) => {
       });
     });
     return conversations;
+    return conversations;
   } catch (err) {
     next(err);
   }
