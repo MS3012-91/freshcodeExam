@@ -5,9 +5,9 @@ const chatRouter = express.Router();
 
 chatRouter.post('/newMessage', chatController.addMessage);
 
-chatRouter.post('/getChat', chatController.getChat);
+chatRouter.get('/getChat:interlocutorId', chatController.getChat);
 
-chatRouter.post('/getPreview', chatController.getPreview);
+chatRouter.get('/getPreview', chatController.getPreview);
 
 chatRouter.post('/blackList', chatController.blackList);
 

@@ -10,12 +10,12 @@ export const downloadContestFile = data =>
   http.get(`contest/downloadFile/${data.fileName}`);
 export const payMent = data => http.post('user/pay', data.formData);
 export const changeMark = data => http.post('user/changeMark', data);
-export const getPreviewChat = () => http.post('chat/getPreview');
-export const getDialog = data => http.post('chat/getChat', data);
+
+
 export const dataForContest = data => http.post('contest/dataForContest', data);
 export const cashOut = data => http.post('user/cashout', data);
 export const updateUser = data => http.post('user/updateUser', data);
-export const newMessage = data => http.post('chat/newMessage', data);
+
 export const changeChatFavorite = data => http.post('chat/favorite', data);
 export const changeChatBlock = data => http.post('chat/blackList', data);
 export const getCatalogList = data => http.post('chat/getCatalogs', data);
@@ -61,3 +61,10 @@ export const getContestById = data =>
       contestId: data.contestId,
     },
   });
+
+
+//chat connections
+export const newMessage = data => http.post('chat/newMessage', data);
+export const getDialog = (queryParams) => http.get(`chat/getChat${queryParams}`);
+export const getPreviewChat = () => http.get('chat/getPreview');
+
