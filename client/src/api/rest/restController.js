@@ -61,3 +61,10 @@ export const getContestById = data =>
       contestId: data.contestId,
     },
   });
+
+
+//chat connections
+export const newMessage = data => http.post('chat/newMessage', data);
+export const getDialog = (queryParams) => http.get(`chat/getChat${queryParams}`);
+export const getPreviewChat = () => http.get('chat/getPreview');
+
