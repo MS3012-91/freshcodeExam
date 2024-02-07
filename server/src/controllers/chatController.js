@@ -50,23 +50,23 @@ module.exports.addMessage = async (req, res, next) => {
 const createOrUpdateConversation = async participants => {
   try {
     const conversation = await Conversation.findOneAndUpdate(
-      {
-        participants,
-      },
-      { participants, blackList: [false, false], favoriteList: [false, false] },
-      {
-        upsert: true,
-        new: true,
-        setDefaultsOnInsert: true,
-        useFindAndModify: false,
-      }
+    {
+      participants,
+    },
+    { participants, blackList: [false, false], favoriteList: [false, false] },
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true,
+      useFindAndModify: false,
+    }
     );
     if (!conversation) {
       next(createError(400, 'Conversation not update'));
     }
-    return conversation
-  } catch (err) {
-    next(err);
+  } 
+  catch (err) {
+next (err)
   }
 };
 
@@ -113,25 +113,25 @@ module.exports.getChat = async (req, res, next) => {
 const getMessages = async (participants, interlocutorId, next) => {
   try {
     const messages = await Message.aggregate([
-      {
-        $lookup: {
-          from: 'conversations',
-          localField: 'conversation',
-          foreignField: '_id',
-          as: 'conversationData',
-        },
+    {
+      $lookup: {
+        from: 'conversations',
+        localField: 'conversation',
+        foreignField: '_id',
+        as: 'conversationData',
       },
-      { $match: { 'conversationData.participants': participants } },
-      { $sort: { createdAt: 1 } },
-      {
-        $project: {
-          _id: 1,
-          sender: 1,
-          body: 1,
-          conversation: 1,
-          createdAt: 1,
-          updatedAt: 1,
-        },
+    },
+    { $match: { 'conversationData.participants': participants } },
+    { $sort: { createdAt: 1 } },
+    {
+      $project: {
+        _id: 1,
+        sender: 1,
+        body: 1,
+        conversation: 1,
+        createdAt: 1,
+        updatedAt: 1,
+      },
       },
     ]);
     if (!messages.length) {
