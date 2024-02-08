@@ -57,7 +57,7 @@ export const getDialogMessages = decorateAsyncThunk({
     const queryParams = payload.interlocutorId;
     const { data } = await restController.getDialog(queryParams);
     return data;
-  }
+  },
 });
 
 const getDialogMessagesExtraReducers = createExtraReducers({
@@ -148,10 +148,10 @@ export const changeChatBlock = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/changeChatBlock`,
   thunk: async payload => {
     const { chatId, blackListFlag } = payload;
-    const { data } = await restController.changeChatBlock(
+    const { data } = await restController.changeChatBlock({
       chatId,
-      blackListFlag
-    );
+      blackListFlag,
+    });
     return data;
   },
 });

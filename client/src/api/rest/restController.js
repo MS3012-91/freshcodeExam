@@ -16,7 +16,7 @@ export const updateUser = data => http.post('user/updateUser', data);
 export const getCatalogList = data => http.post('chat/getCatalogs', data);
 export const addChatToCatalog = data =>
   http.post('chat/addNewChatToCatalog', data);
-export const createCatalog = data => http.post('chat/createCatalog', data);
+
 export const deleteCatalog = data => http.post('chat/deleteCatalog', data);
 export const removeChatFromCatalog = data =>
   http.post('chat/removeChatFromCatalog', data);
@@ -67,3 +67,5 @@ export const changeChatBlock = ({ chatId, blackListFlag }) =>
   http.patch(`chat/blackList${chatId}`, { blackListFlag });
 export const changeChatFavorite = ({ chatId, chatParams }) =>
   http.patch(`chat/favorite${chatId}`, { chatParams });
+export const createCatalog = ({ catalogName, chatId }) =>
+  http.post(`chat/createCatalog${chatId}`, { catalogName });

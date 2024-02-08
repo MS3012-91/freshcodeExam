@@ -152,7 +152,11 @@ module.exports.getPreview = async (req, res, next) => {
         conversation.participants.find(participant => participant !== userId)
       );
     });
-    conversations = await getConversationData(interlocutors, conversations, next);
+    conversations = await getConversationData(
+      interlocutors,
+      conversations,
+      next
+    );
     res.send(conversations);
   } catch (err) {
     next(err);
@@ -236,9 +240,11 @@ const getConversationData = async (interlocutors, conversations, next) => {
 
 module.exports.blackList = async (req, res, next) => {
   const { chatId } = req.params;
+  console.log('chatId', chatId);
   const { blackListFlag } = req.body;
   const { userId } = req.tokenData;
-  const participants = await getParticipants(chatId, next);
+  const conversation = await getParticipants(chatId, next);
+  const participants = conversation.participants;
   const predicate = 'blackList.' + participants.indexOf(userId);
   const chat = await getChat(
     chatId,
@@ -257,8 +263,7 @@ const getParticipants = async (chatId, next) => {
     if (!conversation) {
       next(createError(400, 'Conversation not found'));
     }
-    const participants = await conversation.participants;
-    return participants;
+    return conversation;
   } catch (err) {
     next(err);
   }
@@ -295,7 +300,7 @@ module.exports.favoriteChat = async (req, res, next) => {
   const { userId } = req.tokenData;
   const { chatId } = req.params;
   const {
-    chatParams: { participants, favoriteFlag }
+    chatParams: { participants, favoriteFlag },
   } = req.body;
   const predicate = 'favoriteList.' + participants.indexOf(userId);
   try {
@@ -314,13 +319,18 @@ module.exports.favoriteChat = async (req, res, next) => {
 };
 
 module.exports.createCatalog = async (req, res, next) => {
-  const catalog = new Catalog({
-    userId: req.tokenData.userId,
-    catalogName: req.body.catalogName,
-    chats: [req.body.chatId],
-  });
+  const { userId } = req.tokenData;
+  const { catalogName } = req.body;
+  const { chatId } = req.params;
   try {
-    await catalog.save();
+    const catalog = await Catalog.create({
+      userId,
+      catalogName,
+      chats: [chatId],
+    });
+    if (!catalog) {
+      next(createError(404, 'Catalog not found'));
+    }
     res.send(catalog);
   } catch (err) {
     next(err);

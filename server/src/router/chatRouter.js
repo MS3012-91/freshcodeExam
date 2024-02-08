@@ -13,7 +13,7 @@ chatRouter.patch('/blackList:chatId', chatController.blackList);
 
 chatRouter.patch('/favorite:chatId', chatController.favoriteChat);
 
-chatRouter.post('/createCatalog', chatController.createCatalog);
+chatRouter.post('/createCatalog:chatId', chatController.createCatalog);
 
 chatRouter.post('/updateNameCatalog', chatController.updateNameCatalog);
 
