@@ -338,15 +338,21 @@ module.exports.createCatalog = async (req, res, next) => {
 };
 
 module.exports.updateNameCatalog = async (req, res, next) => {
+  const { catalogId } = req.params;
+  const { catalogName } = req.body;
+  const { userId } = req.tokenData;
   try {
     const catalog = await Catalog.findOneAndUpdate(
       {
-        _id: req.body.catalogId,
-        userId: req.tokenData.userId,
+        _id: catalogId,
+        userId,
       },
-      { catalogName: req.body.catalogName },
+      { catalogName },
       { new: true }
     );
+    if (!catalog) {
+      next(createError(404, 'Catalog not found'));
+    }
     res.send(catalog);
   } catch (err) {
     next(err);

@@ -20,8 +20,6 @@ export const addChatToCatalog = data =>
 export const deleteCatalog = data => http.post('chat/deleteCatalog', data);
 export const removeChatFromCatalog = data =>
   http.post('chat/removeChatFromCatalog', data);
-export const changeCatalogName = data =>
-  http.post('chat/updateNameCatalog', data);
 export const getCustomersContests = data =>
   http.post(
     'contest/getCustomersContests',
@@ -69,3 +67,5 @@ export const changeChatFavorite = ({ chatId, chatParams }) =>
   http.patch(`chat/favorite${chatId}`, { chatParams });
 export const createCatalog = ({ catalogName, chatId }) =>
   http.post(`chat/createCatalog${chatId}`, { catalogName });
+export const changeCatalogName = ({ catalogName, catalogId }) =>
+  http.patch(`chat/updateNameCatalog${catalogId}`, {catalogName});
