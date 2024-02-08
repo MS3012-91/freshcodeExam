@@ -194,7 +194,8 @@ const getCatalogListExtraReducers = createExtraReducers({
 export const addChatToCatalog = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/addChatToCatalog`,
   thunk: async payload => {
-    const { data } = await restController.addChatToCatalog(payload);
+    const { chatId, catalogId } = payload;
+    const { data } = await restController.addChatToCatalog({ chatId, catalogId });
     return data;
   },
 });

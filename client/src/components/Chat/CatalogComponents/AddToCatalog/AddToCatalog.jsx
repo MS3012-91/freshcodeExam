@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
 import SelectInput from '../../../SelectInput/SelectInput';
+import Notification from '../../../Notification/Notification';
 import { addChatToCatalog } from '../../../../store/slices/chatSlice';
 import styles from './AddToCatalog.module.sass';
 
 const AddToCatalog = props => {
+  const [error, setError] = useState(false);
   const getCatalogsNames = () => {
     const { catalogList } = props;
     const namesArray = [];
@@ -25,8 +27,15 @@ const AddToCatalog = props => {
   };
 
   const click = values => {
-    const { addChatId } = props;
-    props.addChatToCatalog({ chatId: addChatId, catalogId: values.catalogId });
+    const { addChatId, catalogList } = props;
+    const catalogNames = [];
+    catalogList.map(item => catalogNames.push(item._id));
+    catalogNames.includes(values.catalogId)
+      ? setError(true)
+      : props.addChatToCatalog({
+          chatId: addChatId,
+          catalogId: values.catalogId,
+        });
   };
 
   const selectArray = getCatalogsNames();
@@ -53,6 +62,11 @@ const AddToCatalog = props => {
         <div className={styles.notFound}>
           You have not created any directories.
         </div>
+      )}
+      {error && (
+        <Notification
+          message={'Chat is already in choosing catalog'}
+        />
       )}
     </>
   );
