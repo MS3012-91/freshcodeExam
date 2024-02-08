@@ -31,7 +31,7 @@ const ChatHeader = props => {
   };
 
   const { avatar, firstName } = props.interlocutor;
-  const { backToDialogList, chatData, userId } = props;  
+  const { backToDialogList, chatData, userId } = props;
   return (
     <div className={styles.chatHeader}>
       <div
@@ -61,6 +61,7 @@ const ChatHeader = props => {
               onClick={event =>
                 changeFavorite(
                   {
+                    chatId: chatData._id,
                     participants: chatData.participants,
                     favoriteFlag: !isFavorite(chatData, userId),
                   },

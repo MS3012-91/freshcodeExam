@@ -292,17 +292,24 @@ const getChat = async (
 };
 
 module.exports.favoriteChat = async (req, res, next) => {
-  const predicate =
-    'favoriteList.' + req.body.participants.indexOf(req.tokenData.userId);
+  const { userId } = req.tokenData;
+  const { chatId } = req.params;
+  const {
+    chatParams: { participants, favoriteFlag }
+  } = req.body;
+  const predicate = 'favoriteList.' + participants.indexOf(userId);
   try {
-    const chat = await Conversation.findOneAndUpdate(
-      { participants: req.body.participants },
-      { $set: { [predicate]: req.body.favoriteFlag } },
+    const chat = await Conversation.findByIdAndUpdate(
+      { _id: chatId },
+      { $set: { [predicate]: favoriteFlag } },
       { new: true }
     );
+    if (!chat) {
+      next(createError(404, 'Chat not found'));
+    }
     res.send(chat);
   } catch (err) {
-    res.send(err);
+    next(err);
   }
 };
 

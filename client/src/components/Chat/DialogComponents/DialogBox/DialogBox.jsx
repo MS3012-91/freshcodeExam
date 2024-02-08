@@ -63,6 +63,7 @@ const DialogBox = props => {
                 {
                   participants,
                   favoriteFlag: !isFavorite,
+                  chatId: _id,
                 },
                 event
               )

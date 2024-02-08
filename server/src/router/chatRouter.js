@@ -11,7 +11,7 @@ chatRouter.get('/getPreview', chatController.getPreview);
 
 chatRouter.patch('/blackList:chatId', chatController.blackList);
 
-chatRouter.post('/favorite', chatController.favoriteChat);
+chatRouter.patch('/favorite:chatId', chatController.favoriteChat);
 
 chatRouter.post('/createCatalog', chatController.createCatalog);
 
