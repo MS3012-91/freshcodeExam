@@ -31,7 +31,7 @@ const ChatHeader = props => {
   };
 
   const { avatar, firstName } = props.interlocutor;
-  const { backToDialogList, chatData, userId } = props;
+  const { backToDialogList, chatData, userId } = props;  
   return (
     <div className={styles.chatHeader}>
       <div
@@ -77,6 +77,7 @@ const ChatHeader = props => {
                 changeBlackList(
                   {
                     blackListFlag: !isBlocked(chatData, userId),
+                    chatId: chatData._id,
                   },
                   event
                 )

@@ -143,7 +143,10 @@ export const changeChatBlock = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/changeChatBlock`,
   thunk: async payload => {
     const { chatId, blackListFlag } = payload;
-    const { data } = await restController.changeChatBlock(chatId, blackListFlag );
+    const { data } = await restController.changeChatBlock(
+      chatId,
+      blackListFlag
+    );
     return data;
   },
 });

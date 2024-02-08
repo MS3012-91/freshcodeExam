@@ -14,7 +14,10 @@ module.exports.addMessage = async (req, res, next) => {
     (participant1, participant2) => participant1 - participant2
   );
   try {
-    const newConversation = await createOrUpdateConversation(participants);
+    const newConversation = await createOrUpdateConversation(
+      participants,
+      next
+    );
     const conversationId = newConversation._id;
     const message = createMessage(senderId, messageBody, conversationId);
     await message.save();
@@ -47,7 +50,7 @@ module.exports.addMessage = async (req, res, next) => {
   }
 };
 
-const createOrUpdateConversation = async participants => {
+const createOrUpdateConversation = async (participants, next) => {
   try {
     const conversation = await Conversation.findOneAndUpdate(
       {
@@ -64,6 +67,7 @@ const createOrUpdateConversation = async participants => {
     if (!conversation) {
       next(createError(400, 'Conversation not update'));
     }
+    return conversation;
   } catch (err) {
     next(err);
   }
@@ -86,7 +90,7 @@ module.exports.getChat = async (req, res, next) => {
     (participant1, participant2) => participant1 - participant2
   );
   try {
-    const messages = await getMessages(participants);
+    const messages = await getMessages(participants, interlocutorId, next);
     const interlocutor = await userQueries.findUser({
       id: interlocutorId,
     });
@@ -105,7 +109,7 @@ module.exports.getChat = async (req, res, next) => {
   }
 };
 
-const getMessages = async participants => {
+const getMessages = async (participants, interlocutorId, next) => {
   try {
     const messages = await Message.aggregate([
       {
@@ -148,11 +152,7 @@ module.exports.getPreview = async (req, res, next) => {
         conversation.participants.find(participant => participant !== userId)
       );
     });
-    conversations = await getConversationData(
-      interlocutors,
-      conversations,
-      next
-    );
+    conversations = await getConversationData(interlocutors, conversations, next);
     res.send(conversations);
   } catch (err) {
     next(err);
@@ -238,17 +238,40 @@ module.exports.blackList = async (req, res, next) => {
   const { chatId } = req.params;
   const { blackListFlag } = req.body;
   const { userId } = req.tokenData;
-  let conversation, participants;
+  const participants = await getParticipants(chatId, next);
+  const predicate = 'blackList.' + participants.indexOf(userId);
+  const chat = await getChat(
+    chatId,
+    predicate,
+    userId,
+    blackListFlag,
+    participants,
+    next
+  );
+  res.send(chat);
+};
+
+const getParticipants = async (chatId, next) => {
   try {
-    conversation = await Conversation.findById(chatId);
+    const conversation = await Conversation.findById(chatId);
     if (!conversation) {
       next(createError(400, 'Conversation not found'));
     }
-    participants = conversation.participants;
+    const participants = await conversation.participants;
+    return participants;
   } catch (err) {
     next(err);
   }
-  const predicate = 'blackList.' + participants.indexOf(userId);
+};
+
+const getChat = async (
+  chatId,
+  predicate,
+  userId,
+  blackListFlag,
+  participants,
+  next
+) => {
   try {
     const chat = await Conversation.findOneAndUpdate(
       { _id: chatId },
@@ -262,7 +285,7 @@ module.exports.blackList = async (req, res, next) => {
       participant => participant !== userId
     )[0];
     controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
-    res.send(chat);
+    return chat;
   } catch (err) {
     next(err);
   }
@@ -284,7 +307,6 @@ module.exports.favoriteChat = async (req, res, next) => {
 };
 
 module.exports.createCatalog = async (req, res, next) => {
-  console.log(req.body);
   const catalog = new Catalog({
     userId: req.tokenData.userId,
     catalogName: req.body.catalogName,
