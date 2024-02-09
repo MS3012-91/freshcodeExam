@@ -195,7 +195,10 @@ export const addChatToCatalog = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/addChatToCatalog`,
   thunk: async payload => {
     const { chatId, catalogId } = payload;
-    const { data } = await restController.addChatToCatalog({ chatId, catalogId });
+    const { data } = await restController.addChatToCatalog({
+      chatId,
+      catalogId,
+    });
     return data;
   },
 });
@@ -244,7 +247,8 @@ const createCatalogExtraReducers = createExtraReducers({
 export const deleteCatalog = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/deleteCatalog`,
   thunk: async payload => {
-    await restController.deleteCatalog(payload);
+    const catalogId = { ...payload };
+    await restController.deleteCatalog(catalogId);
     return payload;
   },
 });
@@ -269,7 +273,10 @@ export const removeChatFromCatalog = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/removeChatFromCatalog`,
   thunk: async payload => {
     const { chatId, catalogId } = payload;
-    const { data } = await restController.removeChatFromCatalog({ chatId, catalogId });
+    const { data } = await restController.removeChatFromCatalog({
+      chatId,
+      catalogId,
+    });
     return data;
   },
 });
@@ -297,7 +304,10 @@ export const changeCatalogName = decorateAsyncThunk({
   key: `${CHAT_SLICE_NAME}/changeCatalogName`,
   thunk: async payload => {
     const { catalogName, catalogId } = payload;
-    const { data } = await restController.changeCatalogName({ catalogName, catalogId });
+    const { data } = await restController.changeCatalogName({
+      catalogName,
+      catalogId,
+    });
     return data;
   },
 });

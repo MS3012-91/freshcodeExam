@@ -21,7 +21,7 @@ chatRouter.patch('/addNewChatToCatalog:chatId', chatController.addNewChatToCatal
 
 chatRouter.patch('/removeChatFromCatalog:chatId', chatController.removeChatFromCatalog);
 
-chatRouter.post('/deleteCatalog', chatController.deleteCatalog);
+chatRouter.delete('/deleteCatalog:catalogId', chatController.deleteCatalog);
 
 chatRouter.post('/getCatalogs', chatController.getCatalogs);
 

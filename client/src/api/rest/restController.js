@@ -14,7 +14,6 @@ export const dataForContest = data => http.post('contest/dataForContest', data);
 export const cashOut = data => http.post('user/cashout', data);
 export const updateUser = data => http.post('user/updateUser', data);
 export const getCatalogList = data => http.post('chat/getCatalogs', data);
-export const deleteCatalog = data => http.post('chat/deleteCatalog', data);
 export const getCustomersContests = data =>
   http.post(
     'contest/getCustomersContests',
@@ -68,3 +67,5 @@ export const addChatToCatalog = ({ chatId, catalogId }) =>
   http.patch(`chat/addNewChatToCatalog${chatId}`, { catalogId });
 export const removeChatFromCatalog = ({ chatId, catalogId }) =>
   http.patch(`chat/removeChatFromCatalog${chatId}`, { catalogId });
+export const deleteCatalog = ({ catalogId }) =>
+  http.delete(`chat/deleteCatalog${catalogId}`);

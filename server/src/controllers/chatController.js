@@ -401,11 +401,16 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 };
 
 module.exports.deleteCatalog = async (req, res, next) => {
+  const { catalogId } = req.params;
+  const { userId } = req.tokenData;
   try {
-    await Catalog.remove({
-      _id: req.body.catalogId,
-      userId: req.tokenData.userId,
+    const result = await Catalog.remove({
+      _id: catalogId,
+      userId,
     });
+    if (!result.deletedCount) {
+      next(createError(404, 'Catalog not found'));
+    }
     res.end();
   } catch (err) {
     next(err);
