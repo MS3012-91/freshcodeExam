@@ -57,7 +57,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getCatalogList: data => dispatch(getCatalogList(data)),
+  getCatalogList: () => dispatch(getCatalogList()),
   removeChatFromCatalog: data => dispatch(removeChatFromCatalog(data)),
 });
 

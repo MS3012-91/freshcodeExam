@@ -23,6 +23,6 @@ chatRouter.patch('/removeChatFromCatalog:chatId', chatController.removeChatFromC
 
 chatRouter.delete('/deleteCatalog:catalogId', chatController.deleteCatalog);
 
-chatRouter.post('/getCatalogs', chatController.getCatalogs);
+chatRouter.get('/getCatalogs', chatController.getCatalogs);
 
 module.exports = chatRouter;
