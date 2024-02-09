@@ -379,15 +379,21 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
 };
 
 module.exports.removeChatFromCatalog = async (req, res, next) => {
+  const { userId } = req.tokenData;
+  const { chatId } = req.params;
+  const { catalogId } = req.body;
   try {
     const catalog = await Catalog.findOneAndUpdate(
       {
-        _id: req.body.catalogId,
-        userId: req.tokenData.userId,
+        _id: catalogId,
+        userId,
       },
-      { $pull: { chats: req.body.chatId } },
+      { $pull: { chatId } },
       { new: true }
     );
+    if (!catalog) {
+      next(createError(404, 'Catalog not found'));
+    }
     res.send(catalog);
   } catch (err) {
     next(err);

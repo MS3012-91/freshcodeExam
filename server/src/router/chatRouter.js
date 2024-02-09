@@ -19,7 +19,7 @@ chatRouter.patch('/updateNameCatalog:catalogId', chatController.updateNameCatalo
 
 chatRouter.patch('/addNewChatToCatalog:chatId', chatController.addNewChatToCatalog);
 
-chatRouter.post('/removeChatFromCatalog', chatController.removeChatFromCatalog);
+chatRouter.patch('/removeChatFromCatalog:chatId', chatController.removeChatFromCatalog);
 
 chatRouter.post('/deleteCatalog', chatController.deleteCatalog);
 
