@@ -2,8 +2,22 @@ import React from 'react';
 import CONSTANTS from '../../constants';
 import SelectInput from '../SelectInput/SelectInput';
 import FormInput from '../FormInput/FormInput';
-import styles from '../ContestForm/ContestForm.module.sass';
 import Spinner from '../Spinner/Spinner';
+import styles from '../ContestForm/ContestForm.module.sass';
+
+const selectClasses = {
+  inputContainer: styles.selectInputContainer,
+  inputHeader: styles.selectHeader,
+  selectInput: styles.select,
+  warning: styles.warning,
+};
+
+const formInputClasses = {
+  inputContainer: styles.inputContainer,
+  inputLabel: styles.inputHeader,
+  input: styles.input,
+  warning: styles.warning,
+};
 
 const OptionalSelects = props => {
   if (props.isFetching) {
@@ -16,23 +30,13 @@ const OptionalSelects = props => {
           <SelectInput
             name='typeOfName'
             header='type of company'
-            classes={{
-              inputContainer: styles.selectInputContainer,
-              inputHeader: styles.selectHeader,
-              selectInput: styles.select,
-              warning: styles.warning,
-            }}
+            classes={selectClasses}
             optionsArray={props.dataForContest.data.typeOfName}
           />
           <SelectInput
             name='styleName'
             header='Style name'
-            classes={{
-              inputContainer: styles.selectInputContainer,
-              inputHeader: styles.selectHeader,
-              selectInput: styles.select,
-              warning: styles.warning,
-            }}
+            classes={selectClasses}
             optionsArray={props.dataForContest.data.nameStyle}
           />
         </>
@@ -41,29 +45,16 @@ const OptionalSelects = props => {
     case CONSTANTS.LOGO_CONTEST: {
       return (
         <>
-          <div className={styles.inputContainer}>
-            <span className={styles.inputHeader}>
-              What name of your venture?
-            </span>
-            <FormInput
-              name='nameVenture'
-              type='text'
-              label='name of venture'
-              classes={{
-                container: styles.componentInputContainer,
-                input: styles.input,
-                warning: styles.warning,
-              }}
-            />
-          </div>
+          <FormInput
+            name='nameVenture'
+            type='text'
+            label='What name of your venture?'
+            placeholder='name of venture'
+            classes={formInputClasses}
+          />
           <SelectInput
             name='brandStyle'
-            classes={{
-              inputContainer: styles.selectInputContainer,
-              inputHeader: styles.selectHeader,
-              selectInput: styles.select,
-              warning: styles.warning,
-            }}
+            classes={selectClasses}
             header='Brand Style'
             optionsArray={props.dataForContest.data.brandStyle}
           />
@@ -73,29 +64,16 @@ const OptionalSelects = props => {
     case CONSTANTS.TAGLINE_CONTEST: {
       return (
         <>
-          <div className={styles.inputContainer}>
-            <span className={styles.inputHeader}>
-              What name of your venture?
-            </span>
-            <FormInput
-              name='nameVenture'
-              type='text'
-              label='name of venture'
-              classes={{
-                container: styles.componentInputContainer,
-                input: styles.input,
-                warning: styles.warning,
-              }}
-            />
-          </div>
+          <FormInput
+            name='nameVenture'
+            type='text'
+            label='What name of your venture?'
+            placeholder='name of venture'
+            classes={formInputClasses}
+          />
           <SelectInput
             name='typeOfTagline'
-            classes={{
-              inputContainer: styles.selectInputContainer,
-              inputHeader: styles.selectHeader,
-              selectInput: styles.select,
-              warning: styles.warning,
-            }}
+            classes={selectClasses}
             header='Type tagline'
             optionsArray={props.dataForContest.data.typeOfTagline}
           />

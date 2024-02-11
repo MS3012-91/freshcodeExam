@@ -82,62 +82,55 @@ class ContestForm extends React.Component {
             enableReinitialize
           >
             <Form>
-              <div className={styles.inputContainer}>
-                <span className={styles.inputHeader}>Title of contest</span>
-                <FormInput
-                  name='title'
-                  type='text'
-                  label='Title'
-                  classes={{
-                    container: styles.componentInputContainer,
-                    input: styles.input,
-                    warning: styles.warning,
-                  }}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <SelectInput
-                  name='industry'
-                  classes={{
-                    inputContainer: styles.selectInputContainer,
-                    inputHeader: styles.selectHeader,
-                    selectInput: styles.select,
-                    warning: styles.warning,
-                  }}
-                  header='Describe industry associated with your venture'
-                  optionsArray={this.props.dataForContest.data.industry}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <span className={styles.inputHeader}>
-                  What does your company / business do?
-                </span>
-                <FormTextArea
-                  name='focusOfWork'
-                  type='text'
-                  label='e.g. We`re an online lifestyle brand that provides stylish and high quality apparel to the expert eco-conscious shopper'
-                  classes={{
-                    container: styles.componentInputContainer,
-                    inputStyle: styles.textArea,
-                    warning: styles.warning,
-                  }}
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <span className={styles.inputHeader}>
-                  Tell us about your customers
-                </span>
-                <FormTextArea
-                  name='targetCustomer'
-                  type='text'
-                  label='customers'
-                  classes={{
-                    container: styles.componentInputContainer,
-                    inputStyle: styles.textArea,
-                    warning: styles.warning,
-                  }}
-                />
-              </div>
+              <FormInput
+                name='title'
+                type='text'
+                label='Title of contest'
+                classes={{
+                  inputContainer: styles.inputContainer,
+                  container: styles.componentInputContainer,
+                  input: styles.input,
+                  warning: styles.warning,
+                  inputLabel: styles.inputHeader,
+                }}
+              />
+              <SelectInput
+                name='industry'
+                classes={{
+                  inputContainer: styles.selectInputContainer,
+                  inputHeader: styles.selectHeader,
+                  selectInput: styles.select,
+                  warning: styles.warning,
+                }}
+                header='Describe industry associated with your venture'
+                optionsArray={this.props.dataForContest.data.industry}
+              />
+              <FormTextArea
+                name='focusOfWork'
+                type='text'
+                label='What does your company / business do?'
+                placeholder='e.g. We`re an online lifestyle brand that provides stylish and high quality apparel to the expert eco-conscious shopper'
+                classes={{
+                  inputContainer: styles.inputContainer,
+                  inputHeader: styles.inputHeader,
+                  container: styles.componentInputContainer,
+                  inputStyle: styles.textArea,
+                  warning: styles.warning,
+                }}
+              />
+              <FormTextArea
+                name='targetCustomer'
+                type='text'
+                label=' Tell us about your customers'
+                placeholder='Customers'
+                classes={{
+                  inputContainer: styles.inputContainer,
+                  inputHeader: styles.inputHeader,
+                  container: styles.componentInputContainer,
+                  inputStyle: styles.textArea,
+                  warning: styles.warning,
+                }}
+              />
               <OptionalSelects {...this.props} />
               <FieldFileInput
                 name='file'

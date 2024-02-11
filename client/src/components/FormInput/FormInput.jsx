@@ -15,9 +15,10 @@ const FormInput = ({ classes, label, name, ...rest }) => (
         [classes.valid]: touched && !error,
       });
       return (
+        <div className={classes.inputContainer}>
         <div className={classes.container}>
+          <label htmlFor={field.name} className={classes.inputLabel}>{label}</label>
           <input
-            type='text'
             {...field}
             placeholder={label}
             className={inputClassName}
@@ -28,6 +29,7 @@ const FormInput = ({ classes, label, name, ...rest }) => (
             component='span'
             className={classes.warning}
           />
+          </div>
         </div>
       );
     }}

@@ -92,6 +92,8 @@
   &:focus
     border: 2px solid #28d2d0
 
+  &::placeholder
+    text-transform: capitalize
 
 .formContainer
   display: flex
@@ -124,8 +126,9 @@
       padding: 0 10px
       color: #555
       transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+      text-transform: capitalize
       @media(max-width: 700px)
-        width: min-content
+        width: min-content     
 
       &:focus
         border: 2px solid #28d2d0
@@ -137,6 +140,9 @@
       font-weight: 700
       margin-top: 12px
       margin-bottom: 5px
+      text-transform: lowercase
+      &:first-letter
+        text-transform: uppercase
 
 .inputContainer
   margin: 15px 0 0 0

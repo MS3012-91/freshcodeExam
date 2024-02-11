@@ -15,21 +15,11 @@ const SelectInput = ({
   } = props;
 
   const getOptionsArray = () => {
-    const array = [];
-    for (let i = 0; optionsArray && i < optionsArray.length; i++) {
-      let option;
-      if (valueArray) {
-        option = (
-          <option key={i} value={valueArray[i]}>
-            {optionsArray[i]}
-          </option>
-        );
-      } else {
-        option = <option key={i}>{optionsArray[i]}</option>;
-      }
-      array.push(option);
-    }
-    return array;
+    return (optionsArray || []).map((option, i) => (
+      <option key={i} value={valueArray ? valueArray[i] : undefined}>
+        {option}
+      </option>
+    ));
   };
 
   useLayoutEffect(() => {
@@ -40,7 +30,9 @@ const SelectInput = ({
 
   return (
     <div className={classes.inputContainer}>
-      <span className={classes.inputHeader}>{header}</span>
+      <label htmlFor={field.name} className={classes.inputHeader}>
+        {header}
+      </label>
       <select {...field} className={classes.selectInput}>
         {getOptionsArray()}
       </select>
