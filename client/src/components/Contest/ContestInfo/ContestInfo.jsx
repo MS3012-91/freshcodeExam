@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styles from '../../Brief/Brief.module.sass';
 import CONSTANTS from '../../../constants';
 import LogoContestSpecialInfo from './LogoContestSpecialInfo';
@@ -6,7 +7,8 @@ import NameContestSpecialInfo from './NameContestSpecialInfo';
 import TaglineContestSpecialInfo from './TaglineContestSpecialInfo';
 
 const ContestInfo = props => {
-  const { changeEditContest, userId, contestData, role, goChat } = props;
+  const { changeEditContest, userId, contestData, role, chatStore, goChat } =
+    props;
   const {
     typeOfTagline,
     brandStyle,
@@ -39,7 +41,10 @@ const ContestInfo = props => {
             </div>
           )}
           {role !== CONSTANTS.CUSTOMER && (
-            <i onClick={goChat} className='fas fa-comments' />
+            <i
+              onClick={!chatStore.isShow ? goChat : null}
+              className='fas fa-comments'
+            />
           )}
         </div>
         <div className={styles.dataContainer}>
@@ -97,4 +102,9 @@ const ContestInfo = props => {
   );
 };
 
-export default ContestInfo;
+const mapStateToProps = state => {
+  const chatStore = state;
+  return chatStore;
+};
+
+export default connect(mapStateToProps, null)(ContestInfo);
