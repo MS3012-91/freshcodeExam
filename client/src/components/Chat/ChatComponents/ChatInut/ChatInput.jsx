@@ -28,7 +28,7 @@ const ChatInput = props => {
           <FormInput
             name='message'
             type='text'
-            label='message'
+            placeholder='Message'
             classes={{
               container: styles.container,
               input: styles.input,
