@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import isEqual from 'lodash/isEqual';
-import { goToExpandedDialog } from '../../store/slices/chatSlice';
+import {
+  goToExpandedDialog,
+  changeChatShow,
+} from '../../store/slices/chatSlice';
 import Brief from '../Brief/Brief';
 
 const findConversationInfo = (interlocutorId, userStore, chatStore) => {
@@ -26,17 +29,25 @@ const findConversationInfo = (interlocutorId, userStore, chatStore) => {
   return null;
 };
 
-const goChat = (contestData, userStore, chatStore, goToExpandedDialog) => {
+const goChat = (
+  contestData,
+  userStore,
+  chatStore,
+  goToExpandedDialog,
+  changeChatShow
+) => {
   const { User } = contestData;
-  goToExpandedDialog({
-    interlocutor: User,
-    conversationData: findConversationInfo(
-      User.id,
-      userStore,
-      chatStore,
-      goToExpandedDialog
-    ),
-  });
+  chatStore.isExpanded
+    ? changeChatShow()
+    : goToExpandedDialog({
+        interlocutor: User,
+        conversationData: findConversationInfo(
+          User.id,
+          userStore,
+          chatStore,
+          goToExpandedDialog
+        ),
+      });
 };
 
 const ContestBrief = ({
@@ -45,13 +56,20 @@ const ContestBrief = ({
   userStore,
   chatStore,
   goToExpandedDialog,
+  changeChatShow,
 }) => {
   return (
     <Brief
       contestData={contestData}
       role={role}
       goChat={() =>
-        goChat(contestData, userStore, chatStore, goToExpandedDialog)
+        goChat(
+          contestData,
+          userStore,
+          chatStore,
+          goToExpandedDialog,
+          changeChatShow
+        )
       }
     />
   );
@@ -64,6 +82,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   goToExpandedDialog: data => dispatch(goToExpandedDialog(data)),
+  changeChatShow: () => dispatch(changeChatShow()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContestBrief);

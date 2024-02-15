@@ -7,7 +7,7 @@ import NameContestSpecialInfo from './NameContestSpecialInfo';
 import TaglineContestSpecialInfo from './TaglineContestSpecialInfo';
 
 const ContestInfo = props => {
-  const { changeEditContest, userId, contestData, role, chatStore, goChat } =
+  const { changeEditContest, userId, contestData, role, goChat } =
     props;
   const {
     typeOfTagline,
@@ -41,10 +41,7 @@ const ContestInfo = props => {
             </div>
           )}
           {role !== CONSTANTS.CUSTOMER && (
-            <i
-              onClick={!chatStore.isShow ? goChat : null}
-              className='fas fa-comments'
-            />
+            <i onClick={goChat} className='fas fa-comments' />
           )}
         </div>
         <div className={styles.dataContainer}>
