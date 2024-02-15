@@ -36,7 +36,7 @@ const OfferForm = props => {
           notValid: styles.notValid,
         }}
         type='text'
-        label='your suggestion'
+        placeholder = 'Your suggestion'
       />
     );
   };
@@ -53,7 +53,7 @@ const OfferForm = props => {
     resetForm();
   };
 
-  const { valid, addOfferError, clearOfferError } = props;
+  const { addOfferError, clearOfferError } = props;
   const validationSchema =
     props.contestType === CONTANTS.LOGO_CONTEST
       ? Schems.LogoOfferSchema
@@ -74,14 +74,16 @@ const OfferForm = props => {
         }}
         validationSchema={validationSchema}
       >
-        <Form className={styles.form}>
-          {renderOfferInput()}
-          {valid && (
-            <button type='submit' className={styles.btnOffer}>
-              Send Offer
-            </button>
-          )}
-        </Form>
+        {({ isValid, dirty }) => (
+          <Form className={styles.form}>
+            {renderOfferInput()}
+            {dirty && (
+              <button type='submit' className={styles.btnOffer} disabled={!isValid}>
+                Send Offer
+              </button>
+            )}
+          </Form>
+        )}
       </Formik>
     </div>
   );
