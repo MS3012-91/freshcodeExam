@@ -6,6 +6,15 @@ import { changeEditModeOnUserProfile } from '../../store/slices/userProfileSlice
 import CONSTANTS from '../../constants';
 import styles from './UserInfo.module.sass';
 
+const component = (componentName, dataValue) => {
+  return (
+    <div className={styles.infoBlock}>
+      <dt className={styles.label}>{componentName}</dt>
+      <dd className={styles.info}>{dataValue}</dd>
+    </div>
+  );
+};
+
 const UserInfo = props => {
   const updateUserData = values => {
     const formData = new FormData();
@@ -17,15 +26,8 @@ const UserInfo = props => {
   };
 
   const { isEdit, changeEditMode, data } = props;
-  const {
-    avatar,
-    firstName,
-    lastName,
-    displayName,
-    email,
-    role,
-    balance,
-  } = data;
+  const { avatar, firstName, lastName, displayName, email, role, balance } =
+    data;
   return (
     <div className={styles.mainContainer}>
       {isEdit ? (
@@ -41,34 +43,14 @@ const UserInfo = props => {
             className={styles.avatar}
             alt='user'
           />
-          <div className={styles.infoContainer}>
-            <div className={styles.infoBlock}>
-              <span className={styles.label}>First Name</span>
-              <span className={styles.info}>{firstName}</span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.label}>Last Name</span>
-              <span className={styles.info}>{lastName}</span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.label}>Display Name</span>
-              <span className={styles.info}>{displayName}</span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.label}>Email</span>
-              <span className={styles.info}>{email}</span>
-            </div>
-            <div className={styles.infoBlock}>
-              <span className={styles.label}>Role</span>
-              <span className={styles.info}>{role}</span>
-            </div>
-            {role === CONSTANTS.CREATOR && (
-              <div className={styles.infoBlock}>
-                <span className={styles.label}>Balance</span>
-                <span className={styles.info}>{`${balance}$`}</span>
-              </div>
-            )}
-          </div>
+          <dl className={styles.infoContainer}>
+            {component('First Name', firstName)}
+            {component('Last Name', lastName)}
+            {component('Display Name', displayName)}
+            {component('Email', email)}
+            {component('Role', role)}
+            {component('Balance', `${balance}$`)}
+          </dl>
         </div>
       )}
       <div
