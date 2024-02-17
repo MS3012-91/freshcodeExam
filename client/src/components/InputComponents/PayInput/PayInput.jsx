@@ -4,16 +4,20 @@ import InputMask from 'react-input-mask';
 import { useField } from 'formik';
 
 const PayInput = props => {
-  const { label, changeFocus, classes, isInputMask, mask } = props;
+  const { placeholder, label, changeFocus, classes, isInputMask, mask } = props;
   const [field, meta, helpers] = useField(props.name);
   const { touched, error } = meta;
 
   if (field.name === 'sum') {
     return (
       <div className={classes.container}>
+        <label htmlFor={field.name} className={classes.label}>
+          {' '}
+          {label}{' '}
+        </label>
         <input
           {...field}
-          placeholder={label}
+          placeholder={placeholder}
           className={classNames(classes.input, {
             [classes.notValid]: touched && error,
           })}
@@ -27,11 +31,14 @@ const PayInput = props => {
   if (isInputMask) {
     return (
       <div className={classes.container}>
+        <label htmlFor={field.name} className={classes.label}>
+          {label}
+        </label>
         <InputMask
           mask={mask}
           maskChar={null}
           {...field}
-          placeholder={label}
+          placeholder={placeholder}
           className={classNames(classes.input, {
             [classes.notValid]: touched && error,
           })}
@@ -45,9 +52,12 @@ const PayInput = props => {
   }
   return (
     <div className={classes.container}>
+      <label htmlFor={field.name} className={classes.label}>
+        {label}
+      </label>
       <input
         {...field}
-        placeholder={label}
+        placeholder={placeholder}
         className={classNames(classes.input, {
           [classes.notValid]: touched && error,
         })}

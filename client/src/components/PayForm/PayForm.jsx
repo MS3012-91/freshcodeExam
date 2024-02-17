@@ -8,6 +8,14 @@ import { changeFocusOnCard } from '../../store/slices/paymentSlice';
 import PayInput from '../InputComponents/PayInput/PayInput';
 import Schems from '../../utils/validators/validationSchems';
 
+const inputClasses = {
+  container: styles.inputContainer,
+  input: styles.input,
+  notValid: styles.notValid,
+  error: styles.error,
+  label: styles.label,
+};
+
 const PayForm = props => {
   const changeFocusOnCard = name => {
     props.changeFocusOnCard(name);
@@ -20,12 +28,13 @@ const PayForm = props => {
   const { focusOnElement, isPayForOrder } = props;
   return (
     <div className={styles.payFormContainer}>
-      <span className={styles.headerInfo}>Payment Information</span>
+      <h1 className={styles.headerInfo}>Payment Information</h1>
       <Formik
         initialValues={{
           focusOnElement: '',
           name: '',
           number: '',
+          sum: '',
           cvc: '',
           expiry: '',
         }}
@@ -48,85 +57,60 @@ const PayForm = props => {
               </div>
               <Form id='myForm' className={styles.formContainer}>
                 <div className={styles.bigInput}>
-                  <span>Name</span>
                   <PayInput
+                    label='Name'
                     name='name'
-                    classes={{
-                      container: styles.inputContainer,
-                      input: styles.input,
-                      notValid: styles.notValid,
-                      error: styles.error,
-                    }}
+                    classes={inputClasses}
                     type='text'
-                    label='name'
+                    placeholder='name'
                     changeFocus={changeFocusOnCard}
                   />
                 </div>
                 {!isPayForOrder && (
                   <div className={styles.bigInput}>
-                    <span>Sum</span>
                     <PayInput
+                      label='Sum'
                       name='sum'
-                      classes={{
-                        container: styles.inputContainer,
-                        input: styles.input,
-                        notValid: styles.notValid,
-                        error: styles.error,
-                      }}
+                      classes={inputClasses}
                       type='text'
-                      label='sum'
+                      placeholder='sum'
                     />
                   </div>
                 )}
                 <div className={styles.bigInput}>
-                  <span>Card Number</span>
                   <PayInput
+                    label='Card Number'
                     isInputMask
                     mask='9999 9999 9999 9999 999'
                     name='number'
-                    classes={{
-                      container: styles.inputContainer,
-                      input: styles.input,
-                      notValid: styles.notValid,
-                      error: styles.error,
-                    }}
+                    classes={inputClasses}
                     type='text'
-                    label='card number'
+                    placeholder='card number'
                     changeFocus={changeFocusOnCard}
                   />
                 </div>
                 <div className={styles.smallInputContainer}>
                   <div className={styles.smallInput}>
-                    <span>* Expires</span>
                     <PayInput
+                      label='* Expires'
                       isInputMask
                       mask='99/99'
                       name='expiry'
-                      classes={{
-                        container: styles.inputContainer,
-                        input: styles.input,
-                        notValid: styles.notValid,
-                        error: styles.error,
-                      }}
+                      classes={inputClasses}
                       type='text'
-                      label='expiry'
+                      placeholder='expiry'
                       changeFocus={changeFocusOnCard}
                     />
                   </div>
                   <div className={styles.smallInput}>
-                    <span>* Security Code</span>
                     <PayInput
+                      label='* Security Code'
                       isInputMask
                       mask='9999'
                       name='cvc'
-                      classes={{
-                        container: styles.inputContainer,
-                        input: styles.input,
-                        notValid: styles.notValid,
-                        error: styles.error,
-                      }}
+                      classes={inputClasses}
                       type='text'
-                      label='cvc'
+                      placeholder='cvc'
                       changeFocus={changeFocusOnCard}
                     />
                   </div>
@@ -136,18 +120,14 @@ const PayForm = props => {
           );
         }}
       </Formik>
-      {isPayForOrder && (
-        <div className={styles.totalSum}>
-          <span>Total: $100.00</span>
-        </div>
-      )}
+      {isPayForOrder && <div className={styles.totalSum}>Total: $100.00</div>}
       <div className={styles.buttonsContainer}>
         <button form='myForm' className={styles.payButton} type='submit'>
-          <span>{isPayForOrder ? 'Pay Now' : 'CashOut'}</span>
+          {isPayForOrder ? 'Pay Now' : 'CashOut'}
         </button>
         {isPayForOrder && (
           <div onClick={() => props.back()} className={styles.backButton}>
-            <span>Back</span>
+            Back
           </div>
         )}
       </div>
