@@ -27,8 +27,8 @@ export default function ContestSteps () {
             <div className={`${contestStep.id == 2 ? styles.greenStep : ''}`}>
               <h3>{contestStep.title}</h3>
               <ul>
-                {contestStep.steps.map(step => (
-                  <li>
+                {contestStep.steps.map((step, index) => (
+                  <li key = {index}>
                     <p>
                       <i className='fas fa-check' />
                       {step}

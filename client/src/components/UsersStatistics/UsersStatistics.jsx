@@ -20,7 +20,7 @@ export default function UsersStatistics () {
   return (
     <dl className={styles.stats}>
       {usersData.map(user => (
-        <div>
+        <div key={user.role}>
           <dt> {user.role} </dt>
           <dd> {user.count}</dd>
         </div>
