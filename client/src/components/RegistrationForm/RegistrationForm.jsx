@@ -64,7 +64,7 @@ class RegistrationForm extends React.Component {
             agreeOfTerms: false,
           }}
           onSubmit={this.clicked}
-          validationSchema={Schems.RegistrationSchem}
+          validationSchema={Schems.RegistrationSchema}
         >
           <Form>
             <div className={styles.row}>

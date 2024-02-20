@@ -77,7 +77,7 @@ class ContestForm extends React.Component {
               ...this.props.initialValues,
             }}
             onSubmit={this.props.handleSubmit}
-            validationSchema={Schems.ContestSchem}
+            validationSchema={Schems.ContestSchema}
             innerRef={this.props.formRef}
             enableReinitialize
           >

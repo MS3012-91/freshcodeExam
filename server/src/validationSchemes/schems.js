@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-module.exports.registrationSchem = yup.object().shape({
+module.exports.registrationSchema = yup.object().shape({
   firstName: yup
     .string()
     .required()
@@ -28,7 +28,7 @@ module.exports.registrationSchem = yup.object().shape({
     .required(),
 });
 
-module.exports.loginSchem = yup.object().shape({
+module.exports.loginSchema = yup.object().shape({
   email: yup
     .string()
     .email()
@@ -40,7 +40,7 @@ module.exports.loginSchem = yup.object().shape({
     .min(1),
 });
 
-module.exports.contestSchem = yup.object().shape({
+module.exports.contestSchema = yup.object().shape({
   contestType: yup
     .string()
     .matches(/(name|logo|tagline)/)

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { checkAuth, clearAuth } from '../../store/slices/authSlice';
 import styles from './LoginForm.module.sass';
 import FormInput from '../FormInput/FormInput';
@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
             password: '',
           }}
           onSubmit={this.clicked}
-          validationSchema={Schems.LoginSchem}
+          validationSchema={Schems.LoginSchema}
         >
           <Form>
             <FormInput

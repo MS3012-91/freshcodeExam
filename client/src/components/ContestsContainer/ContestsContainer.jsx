@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import styles from './ContestsContainer.module.sass';
 import Spinner from '../Spinner/Spinner';
 

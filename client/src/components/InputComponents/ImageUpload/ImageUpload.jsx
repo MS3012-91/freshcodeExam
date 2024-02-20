@@ -4,7 +4,7 @@ import { useField } from 'formik';
 const CONSTANTS = require('../../../constants');
 
 const ImageUpload = props => {
-  const [field, meta, helpers] = useField(props.name);
+  const [field, helpers] = useField(props.name);
   const { uploadContainer, inputContainer, imgStyle } = props.classes;
   const onChange = e => {
     const node = window.document.getElementById('imagePreview');
