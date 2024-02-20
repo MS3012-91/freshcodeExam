@@ -10,11 +10,11 @@ export default function ContestSteps () {
         <div
           key={contestStep.title}
           className={`${
-            contestStep.id == 1
+            contestStep.id === 1
               ? styles.whiteContainer
-              : contestStep.id == 2
+              : contestStep.id === 2
               ? styles.greenContainer
-              : contestStep.id == 3
+              : contestStep.id === 3
               ? styles.greyContainer
               : ''
           }`}
@@ -24,7 +24,7 @@ export default function ContestSteps () {
               contestStep.id % 2 ? styles.step : styles.stepReverse
             } `}
           >
-            <div className={`${contestStep.id == 2 ? styles.greenStep : ''}`}>
+            <div className={`${contestStep.id === 2 ? styles.greenStep : ''}`}>
               <h3>{contestStep.title}</h3>
               <ul>
                 {contestStep.steps.map((step, index) => (

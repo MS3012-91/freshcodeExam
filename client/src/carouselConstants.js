@@ -5,7 +5,7 @@ const mainSlider = CONSTANTS.MAIN_SLIDER;
 const exampleSlider = CONSTANTS.EXAMPLE_SLIDER;
 const feedbackSlider = CONSTANTS.FEEDBACK_SLIDER;
 
-export default {
+const carouselConstants =  {
   MAIN_SLIDER: 'MAIN_SLIDER',
   EXAMPLE_SLIDER: 'EXAMPLE_SLIDER',
   FEEDBACK_SLIDER: 'FEEDBACK_SLIDER',
@@ -128,3 +128,5 @@ export default {
     },
   ],
 };
+
+export default carouselConstants;

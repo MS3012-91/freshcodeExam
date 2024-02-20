@@ -5,10 +5,9 @@ import styles from './HeaderBarTop.module.sass';
 export default function HeaderBarTop () {
   const [index, setIndex] = useState(0);
   const [styleName, setStyle] = useState(styles.headline__static);
-  let timeout;
-
+  
   useEffect(() => {
-    timeout = setInterval(() => {
+    let timeout = setInterval(() => {
       setIndex(index + 1);
       setStyle(styles.headline__isloading);
     }, 3000);
