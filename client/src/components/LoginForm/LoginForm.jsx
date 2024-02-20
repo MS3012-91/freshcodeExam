@@ -52,13 +52,13 @@ class LoginForm extends React.Component {
               classes={formInputClasses}
               name='email'
               type='text'
-              label='Email Address'
+              placeholder='Email Address'
             />
             <FormInput
               classes={formInputClasses}
               name='password'
               type='password'
-              label='Password'
+              placeholder='Password'
             />
             <button
               type='submit'
