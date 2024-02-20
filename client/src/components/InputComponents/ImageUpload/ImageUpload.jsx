@@ -5,6 +5,7 @@ const CONSTANTS = require('../../../constants');
 
 const ImageUpload = props => {
   const [field, helpers] = useField(props.name);
+  console.log('field', field)
   const { uploadContainer, inputContainer, imgStyle } = props.classes;
   const onChange = e => {
     const node = window.document.getElementById('imagePreview');
@@ -38,7 +39,7 @@ const ImageUpload = props => {
       <img
         id='imagePreview'
         className={classNames({ [imgStyle]: !!field.value })}
-        src = {props.file?`${CONSTANTS.default.publicURL}${props.file}`: `${CONSTANTS.default.ANONYM_IMAGE_PATH}`}
+        src = {field.value !== 'anon.png'?`${CONSTANTS.default.publicURL}${props.file}`: `${CONSTANTS.default.ANONYM_IMAGE_PATH}`}
         alt='user'
       />
     </div>
