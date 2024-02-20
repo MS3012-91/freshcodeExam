@@ -43,7 +43,7 @@ const PayForm = props => {
       >
         {({ values }) => {
           const { name, number, expiry, cvc } = values;
-
+          
           return (
             <>
               <div className={styles.cardContainer}>
@@ -81,7 +81,7 @@ const PayForm = props => {
                   <PayInput
                     label='Card Number'
                     isInputMask
-                    mask='9999 9999 9999 9999 999'
+                    mask='9999 9999 9999 9999'
                     name='number'
                     classes={inputClasses}
                     type='text'
