@@ -1,0 +1,55 @@
+.bottomNavigation
+    display: flex
+    align-items: center
+    justify-content: center
+    @media screen and ( max-width: 768px )
+        display: none    
+                    
+    ul
+        box-sizing: border-box
+        display: flex
+        width: 100%
+        flex-direction: row
+        align-items: baseline
+        justify-content: space-between
+        padding-left: 0.25rem   
+        padding-right: 0
+        max-width: 1188px
+        margin: 0 auto
+        flex-wrap: wrap  
+        @media screen and ( max-width: 1240px )
+            justify-content: center
+        @media screen and ( min-width: 1536px )
+            max-width: 1280px
+        @media screen and ( min-width: 1600px )
+            max-width: 1536px
+    
+        li
+            display: flex
+            order: 1
+            align-items: center
+            flex-basis: max-content
+            justify-content: space-around
+            width: 100%
+            padding: 14px 11.5px
+            font-size: 14px
+            line-height: 20px
+            font-weight: 600
+            color: #4a4a4a
+            background: transparent
+            border: none  
+            text-transform: capitalize  
+            &:nth-last-child(2)
+                order: 2
+            &:last-child
+                order:1
+                    
+            .decorateElement
+                height: 1.25rem
+                border: 1px solid #ebebeb
+                margin: 0.75rem
+
+            .arrow
+                margin-left: 0.5rem
+                border: none
+                background-color: transparent

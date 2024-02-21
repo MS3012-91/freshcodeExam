@@ -4,6 +4,8 @@ const serverPort = 5000;
 const CONSTANTS = {
   CUSTOMER: 'customer',
   CREATOR: 'creator',
+  SQUADHELP_EMAIL: 'squadhelp@mail.com',
+  SQUADHELP_TEL: '8773553585',
   CONTEST_STATUS_ACTIVE: 'active',
   CONTEST_STATUS_FINISHED: 'finished',
   CONTEST_STATUS_PENDING: 'pending',
