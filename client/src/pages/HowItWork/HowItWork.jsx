@@ -1,7 +1,8 @@
 import React from 'react';
 import InfoPageHeader from '../../components/InfoPageHeader/InfoPageHeader';
 import HowItWorkHeroSection from '../../components/HowItWorkHeroSection/HowItWorkHeroSection';
-import InfoPageWaysToUse from '../../components/InfoPageWaysToUse/InfoPageWaysToUse'
+import InfoPageWaysToUse from '../../components/InfoPageWaysToUse/InfoPageWaysToUse';
+import InfoPageNamingContest from '../../components/InfoPageNamingContest/InfoPageNamingContest';
 import styles from './HowItWork.module.sass';
 
 export default function HowItWork () {
@@ -11,12 +12,13 @@ export default function HowItWork () {
       <div className={styles.container}>
         <HowItWorkHeroSection />
         <InfoPageWaysToUse />
+        <hr className={styles.line} />
+        <InfoPageNamingContest />
       </div>
-{/*       
-      <NamingContest />
-      <LaunchingAContest />
+
+      {/* <LaunchingAContest />
       <Banner />
-      <Benefits /> */}
+      <Benefits />  */}
     </div>
   );
 }
