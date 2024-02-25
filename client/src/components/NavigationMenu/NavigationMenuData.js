@@ -2,7 +2,8 @@
 export const appMenu = [
     {
       id: 1,
-      title: 'Names for sale',
+    title: 'Names for sale',
+      link: '/premium-domains-for-sale',
       variants: [
         {
           id: 1,
@@ -44,6 +45,7 @@ export const appMenu = [
     {
       id: 2,
       title: 'Naming contests',
+      link: '/branding-marketing-naming-contests',
       variants: [
         {
           id: 1,
@@ -75,6 +77,7 @@ export const appMenu = [
     {
       id: 3,
       title: 'Other services',
+      link: '#',
       variants: [
         {
           id: 1,
@@ -111,11 +114,13 @@ export const appMenu = [
     {
       id: 4,
       title: 'Agency Experience',
+      link: '/managed-contests',
       link: '#',
     },
     {
       id: 5,
       title: 'Resources',
+      link: '/',
       variants: [
         {
           id: 1,

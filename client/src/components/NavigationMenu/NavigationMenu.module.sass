@@ -1,29 +1,33 @@
+@import '../../pages/HowItWork/HowItWork.module.sass'
+
 .bottomNavigation
     display: flex
     align-items: center
     justify-content: center
     @media screen and ( max-width: 768px )
-        display: none    
-                    
+        display: none
+
     ul
+        line-height: 0px
+        font-size: 0px
         box-sizing: border-box
         display: flex
         width: 100%
         flex-direction: row
         align-items: baseline
         justify-content: space-between
-        padding-left: 0.25rem   
-        padding-right: 0
+        padding-left: 0.25rem
+        padding-right: 0px
         max-width: 1188px
         margin: 0 auto
-        flex-wrap: wrap  
+        flex-wrap: wrap
         @media screen and ( max-width: 1240px )
             justify-content: center
         @media screen and ( min-width: 1536px )
             max-width: 1280px
         @media screen and ( min-width: 1600px )
             max-width: 1536px
-    
+
         li
             display: flex
             order: 1
@@ -31,23 +35,40 @@
             flex-basis: max-content
             justify-content: space-around
             width: 100%
+            box-sizing: border-box
             padding: 14px 11.5px
             font-size: 14px
             line-height: 20px
             font-weight: 600
-            color: #4a4a4a
-            background: transparent
-            border: none  
-            text-transform: capitalize  
             &:nth-last-child(2)
                 order: 2
             &:last-child
-                order:1
-                    
+                order: 1
+                padding: 0
+            &:focus
+                @include focusStyle
+        
+            a
+                text-decoration: none
+                color: #4a4a4a
+                background: transparent
+                border: none
+                text-transform: capitalize
+                &:active
+                    @include focusStyle
+                &:focus
+                    @include focusStyle
+                &:hover
+                    color: #2874f0 
+                    .arrow
+                        color: #2874f0 
+
             .decorateElement
                 height: 1.25rem
                 border: 1px solid #ebebeb
                 margin: 0.75rem
+                padding: 0
+                box-sizing: border-box
 
             .arrow
                 margin-left: 0.5rem

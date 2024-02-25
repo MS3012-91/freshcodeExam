@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import CONSTANTS from '../../constants.js';
 
 const Logo = ({ to,  className, ...props}) => (
-  <Link to={to}>
-    <img {...props} className={className} alt='logo'/>
+  <Link to={to} className={className}>
+    <img {...props}  alt='logo'/>
   </Link>
 );
 

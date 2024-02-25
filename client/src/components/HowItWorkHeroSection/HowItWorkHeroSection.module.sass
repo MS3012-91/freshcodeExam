@@ -1,13 +1,17 @@
+@import '../../pages/HowItWork/HowItWork.module.sass'
+
 .heroSection
     position: relative
-    margin-top: 60px
+    margin-top: 20px
     box-sizing: border-box
-    font-family: "Poppins",Helvetica,Arial,sans-serif
+    font-family: Poppins,Helvetica,Arial,sans-serif
     font-size: 1rem
     font-weight: 400
     line-height: 1.5
     color: #1e2022
     text-align: left
+    @media (min-width: 991px)
+        margin-top: 60px
 
     .heroSectionWrapper
         display: flex
@@ -16,14 +20,18 @@
         box-sizing: border-box
         @media screen and ( min-width: 992px )
             justify-content: space-between
+            padding: 32px 15px
 
         .leftSpace
             width: 100%
+            margin-bottom: 48px
+            box-sizing: border-box
             @media screen and ( min-width: 992px )
                 flex: 0 0 58.3333%
                 max-width: 58.3333%
                 position: relative
                 padding: 0 15px
+                margin-bottom: 0
 
         .buttonReward
             display: inline-block
@@ -41,7 +49,8 @@
             margin-bottom: 0.5rem
 
         .mainBlock
-            margin-bottom: 1.5rem
+            @media screen and ( min-width: 992px )
+            margin-bottom: 4rem
 
             h1
                 font-weight: 600
@@ -50,9 +59,12 @@
                 margin-top: 0
 
             p
+                font-family: Poppins,Helvetica,Arial,sans-serif
                 text-align: left
+                font-size: 1rem
                 color: #77838f
                 line-height: 1.7
+                font-weight: 400
                 margin-top: 0
                 margin-bottom: 1rem
                 padding: 0
@@ -71,6 +83,8 @@
                 border-radius: 6.1875rem
                 min-width: 9.6875rem
                 color: #fff
+                font-family: Poppins,Helvetica,Arial,sans-serif
+                margin-bottom: 8px
                 @media screen and ( min-width:576px  )
                     margin-right: 0.5rem
                     margin-bottom: 0
@@ -78,16 +92,23 @@
                     cursor: pointer
                     font-weight: 900
                     margin-right: 0.5rem
+                &:hover
+                    @include hoveredButton
+                &:focus
+                    @include focusStyle
 
         .rightSpace
             display: none
-            margin-bottom: 1.5rem
             position: relative
-            width: 100%
             padding-right: 15px
             padding-left: 15px
+            box-sizing: border-box
             @media screen and ( min-width: 992px )
                 display: flex
+                flex: 0 0 41.6667%
+                max-width: 41.6667%
+                box-sizing: border-box
+
 
             .userImage
                 display: none
@@ -95,7 +116,9 @@
                 margin-block-end: 1em
                 margin-inline-start: 40px
                 margin-inline-end: 40px
+                min-width: 470px
                 width: 100%
+                box-sizing: border-box
                 @media screen and ( min-width: 992px )
                     display: block
                     width: 100%
@@ -103,3 +126,4 @@
                 img
                     display: block
                     width: 100%
+                    box-sizing: border-box
