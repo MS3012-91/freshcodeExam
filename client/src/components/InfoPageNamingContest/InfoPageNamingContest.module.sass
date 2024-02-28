@@ -1,0 +1,110 @@
+.namingContestContainer
+    padding: 4rem 15px
+    margin: 0 auto
+    box-sizing: border-box
+    @media only screen and (max-width: 1024px)
+        max-width: 100%
+
+    .headerBlock
+        text-align: center
+        margin-bottom: 4rem
+        box-sizing: border-box
+
+        img
+            width: 72px
+            height: 72px
+            margin: 0 0 1rem
+
+        h2
+            font-family: Poppins,Helvetica,Arial,sans-serif
+            color: #1e2022
+            font-size: 1.55rem
+            margin-top: 0
+            margin-bottom: 0.5rem
+            line-height: 1.5
+            @media screen and ( min-width: 421px )
+                font-size: 2rem
+
+    .contentWrapper
+        display: flex
+        flex-direction: column-reverse
+        box-sizing: border-box
+        @media screen and ( min-width: 992px )
+            flex-direction: row
+            align-items: center
+            flex-wrap: wrap
+            margin: 0 -15px
+            padding: 0px
+        img
+            display: inline-block
+            position: relative
+            width: 100%
+            padding-right: 15px
+            padding-left: 15px
+            box-sizing: border-box
+            @media screen and ( min-width: 992px )
+                flex: 0 0 50%
+                max-width: 50%
+                flex-wrap: wrap
+                padding: 0 4rem 0 1rem
+
+        .list
+            display: inline-block
+            list-style: none
+            counter-reset: item
+            position: relative
+            margin-bottom: 4rem
+            position: relative
+            width: 100%
+            padding-right: 15px
+            padding-left: 15px
+            box-sizing: border-box
+            @media screen and ( min-width: 992px )
+                flex: 0 0 50%
+                max-width: 50%
+                margin-bottom: 1rem
+            li
+                display: flex
+                flex-direction: row
+                counter-increment: item
+                list-style-position: inside
+                padding: 2rem
+                border: 1px solid #e7eaf3
+                border-radius: 0.3125rem
+                margin: 1rem 0 2rem 2.5rem
+                font-family: Poppins, Arial, Helvetica, sans-serif
+                font-style: 1rem
+                font-weight: 400
+                line-height: 1.5
+                color: #77838F
+                position: relative
+                &:last-child
+                    margin-bottom: 0
+                &::before
+                    margin-right: 2rem
+                    display: block
+                    content: counter(item)"."
+                    color: #377dff
+                    font-weight: 500
+                    font-size: 3.5rem
+                    line-height: 1.2
+                    box-sizing: border-box
+                    align-self: center
+                &::after
+                    content: ''
+                    position: absolute
+                    top: 50%
+                    transform: translateY(50%)
+                    left: -40px
+                    width: 28px
+                    height: 1px
+                    background-color: #e7eaf3
+
+            &::after
+                content: ''
+                position: absolute
+                top: calc( var(--top-line-position) + 1rem + 1px)
+                bottom: calc( var(--bottom-line-position ) - 1px)
+                left: 1rem
+                width: 1px
+                background-color: #e7eaf3

@@ -14,6 +14,7 @@ export default function HowItWork () {
         <InfoPageWaysToUse />
         <hr className={styles.line} />
         <InfoPageNamingContest />
+        <hr className={styles.line} />
       </div>
 
       {/* <LaunchingAContest />
