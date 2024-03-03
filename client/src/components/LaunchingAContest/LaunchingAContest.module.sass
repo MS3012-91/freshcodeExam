@@ -1,0 +1,230 @@
+$blueColor: #377dff
+$hoverLinkBlueColor: #0052ea
+$mainFontColor: #1E2022
+$borderColor: #e7eaf3
+$fonts: Poppins, Helvetica, Arial, sans-serif
+
+@mixin linkStyle
+    color: $blueColor
+    text-decoration: none
+    background-color: transparent
+    pointer-events: auto
+    &:focus
+        @include outlineDecorate
+    &:hover
+        color: $hoverLinkBlueColor
+
+@mixin outlineDecorate
+    outline: rgb(99, 154, 249) inset 3px
+    outline-offset: 5px
+    visibility: visible
+    opacity: 1
+
+.sectionWrapper
+    padding: 64px 16px
+    display: flex
+    flex-direction: column
+    @media only screen and ( max-width: 1024px )
+        max-width: 100%
+    @media screen and ( max-width: 992px )
+        min-width: 960px
+    @media screen and ( min-width: 992px )
+        flex-direction: row
+        margin-left: -15px
+    @media screen and ( min-width: 768px )
+        padding-bottom: 4rem
+        padding-top: 4rem
+    @media screen and ( min-width: 576px )
+        min-width: 540px
+
+    .sectionNavigation
+        position: relative
+        margin-bottom: 3rem
+        width: 100%
+        box-sizing: border-box
+        @media screen and ( min-width: 992px )
+            margin-bottom: 0
+            flex: 0 0 25%
+            min-width: 25%
+            padding-right: 15px
+            height: 100%
+
+        ul
+            max-height: 720px
+            max-width: 100%
+            min-width: 0
+            height: 100%
+            padding: 1rem 2rem
+            display: flex
+            flex-direction: column
+            margin-top: 0
+            word-wrap: break-word
+            background-color: $blueColor
+            background-clip: border-box
+            border-radius: 0.3125rem
+            font-family: $fonts
+
+            .navigationItem
+                padding: 16px 0
+                cursor: pointer
+                &:focus
+                    @include outlineDecorate
+                    border-radius: 0.3125rem
+                &:active
+                    @include outlineDecorate
+                    border-radius: 0.3125rem
+
+                .navigationLink
+                    width: 100%
+                    font-size: .875rem
+                    text-decoration: none
+                    color: rgba(255, 255, 255, 0.7)
+                    &:hover
+                        color: #fff
+                    &:active
+                        color: #fff
+                        border: 0 solid #e5e7eb
+                    &:focus
+                        color: rgba(255, 255, 255, 0.7)
+                        outline: none
+
+    .answersBlock
+        width: 100%
+        position: relative
+        box-sizing: border-box
+        
+        .sectionItem:not(:first-child)
+            padding-top: 4rem
+
+        h3
+            font-size: 1.55rem
+            font-weight: 600
+            color: $blueColor
+            line-height: 1.5
+            margin-bottom: 0.5rem
+            margin-top: 0
+            font-family: $fonts
+            @media screen and ( min-width: 420px )
+                font-size: 1.75rem
+
+        .questionsList
+            display: flex
+            flex-direction: column
+            width: 100%
+            text-decoration: none
+            cursor: pointer
+            user-select: none
+            box-sizing: border-box
+            @media screen and ( min-width: 992px )
+                padding-bottom: 4rem
+
+            li
+                margin-bottom: 1rem
+                border: 1px solid $borderColor
+                border-radius: calc( 0.3175rem - 1px )
+
+                .questionBlock
+                    width: 100%
+                    box-sizing: border-box
+                    &:hover
+                        background-color: #f8fafd
+                    &:active
+                        @include outlineDecorate
+                        border-radius: 0.3125rem
+
+                    .button
+                        cursor: pointer
+                        padding: 0.75rem 1rem
+                        width: 100%
+                        border: none
+                        padding: 0
+                        vertical-align: middle
+                        user-select: none
+                        background-color: transparent
+                        font-size: 1rem
+                        line-height: 1.5
+                        font-family: $fonts
+
+                        .contentBlock
+                            display: flex
+                            flex-direction: row
+                            align-items: baseline
+                            justify-content: space-between
+                            gap: 8px
+                            padding: 0.75rem 1rem
+                            border-bottom: 1px solid $borderColor
+
+                            h4
+                                display: inline-block
+                                width: 100%
+                                text-align: left
+                                display: inline-block
+                                font-family: $fonts
+                                color: $mainFontColor
+                                &:hover
+                                    color: $blueColor
+
+                            i
+                                color: $blueColor
+                                font-weight: 900
+                                font-style: 14px
+                                display: inline-block
+
+                .outerBlock
+                    cursor: text
+
+                    p
+                        font-family: $fonts
+                        flex-wrap: wrap
+                        padding: 1rem
+                        box-sizing: border-box
+                        word-wrap: break-word
+                        color: $mainFontColor
+                        margin: 0
+                        text-align: left
+                        font-size: 1rem
+
+                    .listHeading
+                        padding-bottom: 0
+
+                        a
+                            @include linkStyle
+
+                    .visibleAnswer
+                        display: inline-block
+
+                        a
+                            @include linkStyle
+
+                    .invisibleAnswer
+                        display: none
+
+                .variantsList
+                    list-style-type: disc
+                    margin: 0 0 1rem
+                    padding: 0 1rem 1rem 3.5rem
+                    border: none
+                    box-sizing: border-box
+
+                    li
+                        border: none
+                        margin: 0
+                        box-sizing: border-box
+                        font-family: $fonts
+                        line-height: 1.5
+                        color: #1e2022
+
+                        div
+                            display: inline
+
+                        a
+                            @include linkStyle
+
+        .line
+            margin: 0
+            border: 0
+            border-top: 1px solid $borderColor
+            border-bottom: none
+            box-sizing: content-box
+            height: 0
+            overflow: visible

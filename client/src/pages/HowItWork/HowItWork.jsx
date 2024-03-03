@@ -3,6 +3,7 @@ import InfoPageHeader from '../../components/InfoPageHeader/InfoPageHeader';
 import HowItWorkHeroSection from '../../components/HowItWorkHeroSection/HowItWorkHeroSection';
 import InfoPageWaysToUse from '../../components/InfoPageWaysToUse/InfoPageWaysToUse';
 import InfoPageNamingContest from '../../components/InfoPageNamingContest/InfoPageNamingContest';
+import LaunchingAContest from '../../components/LaunchingAContest/LaunchingAContest';
 import styles from './HowItWork.module.sass';
 
 export default function HowItWork () {
@@ -15,9 +16,11 @@ export default function HowItWork () {
         <hr className={styles.line} />
         <InfoPageNamingContest />
         <hr className={styles.line} />
+        <LaunchingAContest />
+        <hr className={styles.line} />
       </div>
 
-      {/* <LaunchingAContest />
+      {/*  
       <Banner />
       <Benefits />  */}
     </div>
