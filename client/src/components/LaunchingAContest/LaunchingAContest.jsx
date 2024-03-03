@@ -99,7 +99,11 @@ export default function LaunchingAContest () {
                   </li>
                 ))}
               </ul>
-              <hr className={styles.line} />
+              {info.id < launchingData.length ? (
+                <hr className={styles.line} />
+              ) : (
+                ''
+              )}
             </li>
           ))}
         </ul>
