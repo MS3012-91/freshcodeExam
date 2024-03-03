@@ -5,6 +5,7 @@ import InfoPageWaysToUse from '../../components/InfoPageWaysToUse/InfoPageWaysTo
 import InfoPageNamingContest from '../../components/InfoPageNamingContest/InfoPageNamingContest';
 import LaunchingAContest from '../../components/LaunchingAContest/LaunchingAContest';
 import Banner from '../../components/Banner/Banner';
+import StatisticsSection from '../../components/StatisticsSection/StatisticsSection';
 import styles from './HowItWork.module.sass';
 
 export default function HowItWork () {
@@ -18,8 +19,9 @@ export default function HowItWork () {
         <InfoPageNamingContest />
         <hr className={styles.line} />
         <LaunchingAContest />
-        <Banner />
       </div>
+      <Banner />
+      <StatisticsSection />
 
       {/*  
       <Banner />
