@@ -115,9 +115,9 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
             cursor: pointer
             user-select: none
             box-sizing: border-box
-            @media screen and ( min-width: 992px )
-                padding-bottom: 4rem
-
+            @media screen and ( min-width: 992px )                
+                &:not(:last-child)
+                    padding-bottom: 4rem
             li
                 margin-bottom: 1rem
                 border: 1px solid $borderColor
