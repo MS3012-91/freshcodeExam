@@ -6,6 +6,7 @@ import InfoPageNamingContest from '../../components/InfoPageNamingContest/InfoPa
 import LaunchingAContest from '../../components/LaunchingAContest/LaunchingAContest';
 import Banner from '../../components/Banner/Banner';
 import StatisticsSection from '../../components/StatisticsSection/StatisticsSection';
+import CallToAction from '../../components/CallToAction/CallToAction';
 import styles from './HowItWork.module.sass';
 
 export default function HowItWork () {
@@ -22,10 +23,9 @@ export default function HowItWork () {
       </div>
       <Banner />
       <StatisticsSection />
-
-      {/*  
-      <Banner />
-      <Benefits />  */}
+      <div className={styles.container}>
+        <CallToAction />
+      </div>
     </div>
   );
 }
