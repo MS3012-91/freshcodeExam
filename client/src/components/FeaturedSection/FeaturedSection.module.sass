@@ -1,0 +1,80 @@
+.sectionContainer
+    width: 100%
+    box-sizing: border-box
+    display: flex
+    margin: 0 auto
+    flex-wrap: wrap
+    @media screen and ( min-width: 576px)
+        max-width: 540px
+    @media screen and ( min-width: 768px)
+        max-width: 720px
+    @media screen and ( min-width: 992px)
+        max-width: 960px
+    @media screen and ( min-width: 1200px)
+        max-width: 1200px
+    @media only screen and (max-width: 1024px)
+        max-width: 100%
+
+    h3
+        display: inline-block
+        position: relative
+        padding-right: 15px
+        padding-left: 15px
+        padding-top: 2rem
+        margin-bottom: 0.5rem
+        font-weight: 300
+        line-height: 1.5
+        font-size: 1.75rem
+        box-sizing: border-box
+        align-self: flex-start
+        @media screen and ( max-width: 420px )
+            font-size: 1.55rem
+        @media screen and ( min-width: 768px )
+            flex: 0 0 41.66667%
+            max-width: 41.66667%
+            padding-left: 39px
+        @media screen and ( min-width: 992px )
+            flex: 0 0 33.33333%
+            max-width: 33.33333%
+
+    .logoContainer
+        box-sizing: border-box
+        position: relative
+        width: 100%
+        padding: 0 15px
+        margin: 0 -15px 2rem -15px
+        border-top: 1px solid #e7eaf3
+        @media screen and ( min-width: 768px )
+            flex: 0 0 58.33333%
+            max-width: 58.33333%
+        @media screen and ( min-width: 992px )
+            flex: 0 0 66.66667%
+            max-width: 66.66667%
+
+        ul
+            padding-top: 2rem
+            display: flex
+            align-items: center
+            justify-content: center
+            flex-wrap: wrap
+            box-sizing: border-box
+            width: 100%
+
+            li
+                margin-bottom: 1.5rem
+                flex: 0 0 33.33333%
+                max-width: 33.33333%
+                box-sizing: border-box
+                padding: 0 15px
+                margin-bottom: 24px
+                @media screen and (min-width: 992px)
+                    flex: 0 0 25%
+                    max-width: 25%
+
+                img
+                    display: flex
+                    width: 100%
+                    max-width: 6rem
+                    height: auto
+                    margin-left: auto
+                    margin-right: auto
