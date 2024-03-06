@@ -1,0 +1,281 @@
+@mixin headerStyle
+    padding-bottom: 1.25rem
+    font-size: 1.2rem
+    line-height: 2rem
+    color: #333333
+    margin: 0
+    font-weight: 700
+
+@mixin lineBeforeBlock
+    content: ''
+    top: 0
+    width: 100%
+    align-self: center
+    position: absolute
+    border-top: 1px solid #fff
+
+@mixin focusStyle
+    outline: solid 3px #639af9
+    outline-offset: 5px
+    visibility: visible
+    opacity: 1
+    outline-style: inset
+
+.footerContainer
+    width: 100%
+    background-color: #ebebeb
+    font-family: "Raleway", sans-serif
+    color: #4a4a4a
+    line-height: 1.5
+    font-size: 1rem
+    font-weight: 400
+
+    .topContainer
+        width: 100%
+        max-width: 1188px
+        margin: 0 auto
+        padding: 0 1rem
+        border: 0 solid #e5e7eb
+        box-sizing: border-box
+        display: flex
+        flex-direction: column
+        align-items: center
+
+        .topFooter
+            display: flex
+            width: 100%
+            justify-content: space-between
+            padding: 5rem 0 3.75rem 0
+            box-sizing: border-box
+            border: 0 solid #e5e7eb
+            font-family: "Raleway", sans-serif
+            color: #4a4a4a
+            line-height: 1.5
+            position: relative
+            flex-direction: column
+            box-sizing: border-box
+            @media screen and ( min-width: 640px )
+                flex-direction: row
+                flex-wrap: wrap
+
+            .navigationBlock
+                width: 100%
+                @media screen and ( min-width: 640px )
+                    max-width: calc(100% / 4)
+                    box-sizing: border-box
+                    &:last-child
+                        position: absolute
+                        bottom: 60px
+                        right: 0
+                @media screen and (max-width: 991px)
+                    max-width: calc(100% / 2)
+                    &:last-child
+                        position: relative
+                        align-self: flex-end
+                        margin-left: auto
+                @media screen and ( max-width: 639px )
+                    &:last-child
+                        position: static
+                        align-self: flex-start
+                        margin: 0
+
+                h3
+                    @include headerStyle
+
+                li
+                    padding-bottom: 0.75rem
+                    padding-right: 0.25rem
+
+                    a
+                        font-family: "Raleway", sans-serif
+                        font-size: 0.95rem
+                        line-height: 1.5rem
+                        font-weight: 400
+                        color: #4a4a4a
+                        text-decoration: none
+                        &:hover
+                            color: #0052ea
+                            text-decoration: none
+                        &:focus
+                            @include focusStyle
+
+                    .innerList
+                        padding: 0 4px 4px 24px
+                        color: #e5e7eb
+                        margin: 0
+
+    .middleFooter
+        position: relative
+        display: flex
+        flex-direction: column
+        align-items: center
+        box-sizing: border-box
+        margin-right: 1rem
+        margin-left: 1rem
+        max-width: 1188px
+        padding: 60px 0 60px 0
+        gap: 2rem
+        &::before
+            @include lineBeforeBlock
+        @media screen and ( min-width: 640px )
+            flex-direction: row
+            gap: 2rem
+            justify-content: center
+
+        .leftSpace
+
+            box-sizing: border-box
+            @media screen and ( min-width: 640px )
+                flex: 0 0 50%
+                max-width: 50%
+
+            h3
+                @include headerStyle
+            p
+                font-family: "Raleway", sans-serif
+                font-size: 14px
+                line-height: 1.42
+                color: #77838f
+                margin: 0 0 10px
+                text-align: left
+                padding: 0
+
+            form
+                display: flex
+                align-items: center
+                margin-top: 3.5rem
+                width: 100%
+                border: 1px solid #e7eaf3
+
+                input
+                    flex: 1 1 0%
+                    width: 100%
+                    padding: 1.25rem 1rem
+                    font-size: 1.125rem
+                    line-height: 1.75rem
+                    border: none
+                    background-color: white
+                    border-radius: 4px
+                    outline: 2px solid transparent
+                    outline-offset: 2px
+                    box-sizing: border-box
+                    overflow: visible
+                    &::placeholder
+                        font-family: "Raleway", sans-serif
+                    &:focus
+                        @include focusStyle
+
+                .searchButton
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    width: auto
+                    padding: 1.25rem 2rem
+                    color: white
+                    border: none
+                    cursor: pointer
+                    background-color: #4980ff
+                    border-radius: 4px
+                    &:focus
+                        @include focusStyle
+
+                    i
+                        font-size: 28px
+                        color: #fff
+
+        .rightSpace
+            width: 100%
+            align-self: center
+            box-sizing: border-box
+            @media screen and ( min-width: 640px )
+                flex: 0 0 50%
+                max-width: 50%
+
+            ul
+                display: flex
+                flex-direction: row
+                flex-wrap: wrap
+
+                .footerButton
+                    display: block
+                    width: fit-content
+                    padding: 0.75rem 1rem
+                    border: 1px solid #ebebeb
+                    border-radius: 8px
+                    background-color: #fbfcfe
+                    text-decoration: none
+                    margin: 0 14px 14px 0
+                    &:focus
+                        @include focusStyle
+
+                    i
+                        font-size: 16px
+                        color: #4a4a4a
+
+                    span
+                        font-family: "Raleway", sans-serif
+                        color: #4a4a4a
+                        line-height: 1.5
+                        box-sizing: border-box
+                        margin-left: 14px
+
+    .bottomFooter
+        width: 100%
+        position: relative
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        box-sizing: border-box
+        padding: 2.5rem 0
+        @media screen and ( max-width: 767px )
+            max-height: 40rem
+            height: auto
+            text-align: center
+            overflow-y: auto
+            flex-wrap: nowrap !important
+        @media screen and ( min-width: 1024px )
+            flex-direction: row
+            padding: 2.5rem
+            justify-content: space-between
+        &::before
+            @include lineBeforeBlock
+
+        .copyrightText
+            padding-bottom: 1.25rem
+            text-align: center
+            span
+                font-family: "Raleway", sans-serif
+                font-size: 16px
+                line-height: 24px
+                font-weight: 600
+                color: #4a4a4a
+
+        .textLink
+            padding-bottom: 1.25rem
+            text-align: center
+            max-width: 24rem
+            a
+                text-decoration: none
+                font-weight: 600
+                color: #4a4a4a
+                font-size: 0.875rem
+                line-height: 1.25rem
+                overflow-wrap: break-word
+                &:hover
+                    color: #0052ea
+                &:focus
+                    @include focusStyle
+
+        .socialItems
+            display: flex
+            column-gap: 1.5rem
+            a
+                &:hover
+                    transform: translateY(-3px)
+                    color: #fff
+                &:focus
+                    @include focusStyle
+
+                i
+                    font-size: 24px

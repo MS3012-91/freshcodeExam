@@ -8,6 +8,7 @@ import Banner from '../../components/Banner/Banner';
 import StatisticsSection from '../../components/StatisticsSection/StatisticsSection';
 import CallToAction from '../../components/CallToAction/CallToAction';
 import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
+import InfoPageFooter from '../../components/InfoPageFooter/InfoPageFooter';
 import styles from './HowItWork.module.sass';
 
 export default function HowItWork () {
@@ -28,6 +29,7 @@ export default function HowItWork () {
         <CallToAction />
       </div>
       <FeaturedSection />
+      <InfoPageFooter />
     </div>
   );
 }
