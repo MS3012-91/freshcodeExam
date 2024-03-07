@@ -44,7 +44,9 @@ export default function CallToAction () {
         </p>
         <button type='button'>Schedule Consultation</button>
         <a href={`tel:${CONSTANTS.SQUADHELP_TEL}`}>
-          <i className='fas fa-phone-volume'></i>
+          <span aria-label='Phone'>
+            <i className='fas fa-phone-volume'></i>
+          </span>
           &nbsp;(877) 355-3585
         </a>
         <p>Call us for assistance</p>

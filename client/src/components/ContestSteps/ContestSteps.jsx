@@ -28,9 +28,11 @@ export default function ContestSteps () {
               <h3>{contestStep.title}</h3>
               <ul>
                 {contestStep.steps.map((step, index) => (
-                  <li key = {index}>
+                  <li key={index}>
                     <p>
-                      <i className='fas fa-check' />
+                      <span aria-label='Check'>
+                        <i className='fas fa-check' />
+                      </span>
                       {step}
                     </p>
                   </li>

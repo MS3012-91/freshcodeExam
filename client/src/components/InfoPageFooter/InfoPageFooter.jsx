@@ -47,7 +47,9 @@ export default function InfoPageFooter () {
                 className={styles.searchButton}
                 role='button'
               >
-                <i className='fas fa-search'></i>
+                <span aria-label='Search'>
+                  <i className='fas fa-search'></i>
+                </span>
               </button>
             </form>
           </div>
@@ -56,7 +58,9 @@ export default function InfoPageFooter () {
               {buttons.map(button => (
                 <li key={button.id}>
                   <a className={styles.footerButton} href={button.href}>
-                    <i className='fas fa-bolt'></i>
+                    <span aria-label='Bolt'>
+                      <i className='fas fa-bolt'></i>
+                    </span>
                     <span>{button.title}</span>
                   </a>
                 </li>
@@ -83,16 +87,24 @@ export default function InfoPageFooter () {
               href='https://www.linkedin.com/company/squadhelp/'
               target='_blank'
             >
-              <i className='fab fa-linkedin-in'></i>
+              <span aria-label='Linkedin'>
+                <i className='fab fa-linkedin-in'></i>
+              </span>
             </a>
             <a href='https://www.instagram.com/squadhelpinc/' target='_blank'>
-              <i className='fab fa-instagram'></i>
+              <span aria-label='Instagram'>
+                <i className='fab fa-instagram'></i>
+              </span>
             </a>
             <a href='https://twitter.com/squadhelp' target='_blank'>
-              <i className='fab fa-twitter'></i>
+              <span aria-label='Twitter'>
+                <i className='fab fa-twitter'></i>
+              </span>
             </a>
             <a href='https://www.facebook.com/squadhelpinc' target='_blank'>
-              <i className='fab fa-facebook-square'></i>
+              <span aria-label='Facebook'>
+                <i className='fab fa-facebook-square'></i>
+              </span>
             </a>
           </div>
         </div>

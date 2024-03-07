@@ -18,7 +18,9 @@ export default function InfoPageHeader () {
               placeholder='Search over 100,000 names'
             />
             <button className={styles.searchButton} type='submit'>
-              <i className='fas fa-search'></i>
+              <span aria-label='Search'>
+                <i className='fas fa-search'></i>
+              </span>
             </button>
           </form>
           <nav className={styles.topNavigation}>
@@ -26,7 +28,7 @@ export default function InfoPageHeader () {
               {topHeaderData.map(info => (
                 <li key={info.id}>
                   <Link className={styles.link} to={info.linkPath}>
-                    <span className={styles.image}>
+                    <span className={styles.image} aria-label={info.title}>
                       <i className={info.image}></i>
                     </span>
                     <span className={styles.title}>{info.title}</span>
@@ -36,7 +38,9 @@ export default function InfoPageHeader () {
                       <ul>
                         {info.items.map(item => (
                           <li key={item.id}>
-                            <i className={item.image} />
+                            <span aria-label={item.title}>
+                              <i className={item.image} />
+                            </span>
                             <span>{item.title} </span>
                           </li>
                         ))}
@@ -56,7 +60,7 @@ export default function InfoPageHeader () {
           </nav>
         </div>
       </div>
-      <NavigationMenu/>
+      <NavigationMenu />
     </div>
   );
 }
