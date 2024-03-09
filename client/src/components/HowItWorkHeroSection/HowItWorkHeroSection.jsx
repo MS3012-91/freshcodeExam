@@ -1,6 +1,6 @@
 import React from 'react';
 import CONSTANTS from '../../constants';
-import styles from './HowItWorkHeroSection.module.sass'
+import styles from './HowItWorkHeroSection.module.sass';
 
 export default function HowItWorkHeroSection () {
   return (
@@ -19,7 +19,7 @@ export default function HowItWorkHeroSection () {
                 technology and Agency-level validation services.
               </p>
               <button type='button' className={styles.videoButton}>
-                <i class='fas fa-play'></i>
+                <i className='fas fa-play'></i>
                 Play Video
               </button>
             </div>

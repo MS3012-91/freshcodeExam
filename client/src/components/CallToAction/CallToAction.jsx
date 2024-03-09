@@ -27,7 +27,7 @@ export default function CallToAction () {
                 satisfied with your experience.
                 <a
                   href='/how-it-works#satisfactionGaurenteedModal'
-                  tabindex='0'
+                  tabIndex='0'
                 >
                   Learn more
                 </a>

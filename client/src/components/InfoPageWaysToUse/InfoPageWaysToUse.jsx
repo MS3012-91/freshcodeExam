@@ -12,6 +12,7 @@ export default function InfoPageWaysToUse () {
         Squadhelp offers 3 ways to get you a perfect name for your business.
       </p>
       <ul>
+        {/* firstCard */}
         <li>
           <div className={styles.item}>
             <img
@@ -19,7 +20,7 @@ export default function InfoPageWaysToUse () {
                 `${CONSTANTS.STATIC_IMAGES_PATH}` +
                 'howItWorkPage/LaunchAContest.svg'
               }
-              alt=''
+              alt='Peoples Icon'
             />
             <h3>Launch a Contest</h3>
             <p>
@@ -32,6 +33,7 @@ export default function InfoPageWaysToUse () {
             </Link>
           </div>
         </li>
+        {/* secondCard */}
         <li>
           <div className={styles.item}>
             <img
@@ -55,6 +57,7 @@ export default function InfoPageWaysToUse () {
             </Link>
           </div>
         </li>
+        {/* thirdCard */}
         <li>
           <div className={styles.item}>
             <img

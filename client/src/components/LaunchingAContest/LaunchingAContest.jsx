@@ -20,7 +20,7 @@ export default function LaunchingAContest () {
     return text;
   }
   return (
-    <div className={styles.sectionWrapper}>
+    <section className={styles.sectionWrapper}>
       <nav className={styles.sectionNavigation}>
         <ul className={styles.navigationList}>
           {navigationItem.map(item => (
@@ -108,6 +108,6 @@ export default function LaunchingAContest () {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 }

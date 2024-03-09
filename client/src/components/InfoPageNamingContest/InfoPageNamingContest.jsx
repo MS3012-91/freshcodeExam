@@ -10,7 +10,7 @@ export default function InfoPageNamingContest () {
   const bottomLinePosition = Math.round(bottomHeight / 2);
 
   return (
-    <div className={styles.namingContestContainer}>
+    <section className={styles.namingContestContainer}>
       <header className={styles.headerBlock}>
         <img
           src={`${CONSTANTS.STATIC_IMAGES_PATH}howItWorkPage/prize.svg`}
@@ -46,6 +46,6 @@ export default function InfoPageNamingContest () {
           </li>
         </ol>
       </div>
-    </div>
+    </section>
   );
 }

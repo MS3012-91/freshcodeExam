@@ -4,6 +4,7 @@ import { topHeaderData } from './HeaderNavigationData';
 import NavigationMenu from '../NavigationMenu/NavigationMenu';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import styles from './InfoPageHeader.module.sass';
+
 export default function InfoPageHeader () {
   return (
     <div className={styles.navbar}>
@@ -41,7 +42,7 @@ export default function InfoPageHeader () {
                             <span aria-label={item.title}>
                               <i className={item.image} />
                             </span>
-                            <span>{item.title} </span>
+                            {item.title}
                           </li>
                         ))}
                       </ul>
@@ -50,10 +51,8 @@ export default function InfoPageHeader () {
                 </li>
               ))}
               <li key='startContest'>
-                <Link to='/startContest'>
-                  <button type='button' className={styles.startContest}>
-                    Start Contest
-                  </button>
+                <Link to='/startContest' className={styles.startContest}>
+                  Start Contest
                 </Link>
               </li>
             </ul>
