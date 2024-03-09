@@ -1,14 +1,29 @@
-@mixin focusStyle 
+@mixin focusStyle
     outline: solid 3px #639af9
     outline-offset: 5px
     visibility: visible
     opacity: 1
     outline-style: inset
+
 @mixin hoveredButton
     box-shadow: 0 4px 11px rgba(55,125,255,.35)
     transform: translateY(-3px)
     cursor: pointer
-    
+
+$fontPoppins: Poppins, Helvetica, Arial, sans-serif
+$fontRaleway: Raleway, sans-serif
+
+$white: #fff
+$primary: #377dff
+$secondary: #77838f
+$info: #00dffc
+$dark: #1e2022
+$dark-grey: #333333
+$light-grey: #4a4a4a
+$light-grey-border: #ebebeb
+$super-light-grey: #e7eaf3
+$indigo: #2d1582
+
 .container
     max-width: 100%
     box-sizing: border-box
@@ -34,6 +49,5 @@
         transform: translateX(-30%)
         width: 200%
         border: 0
-        border-top: 1px solid #e7eaf3
+        border-top: 1px solid $super-light-grey
         margin: 0
-       

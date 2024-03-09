@@ -1,4 +1,4 @@
-@import '../../pages/HowItWork/HowItWork.module.sass'
+@use '../../pages/HowItWork/HowItWork.module.sass'
 
 .bottomNavigation
     display: flex
@@ -48,18 +48,18 @@
                 order: 1
                 padding: 0
             &:focus
-                @include focusStyle
+                @include HowItWork.focusStyle
 
             a
                 text-decoration: none
-                color: #4a4a4a
+                color: HowItWork.$light-grey
                 background: transparent
                 border: none
                 text-transform: capitalize
                 &:active
-                    @include focusStyle
+                    @include HowItWork.focusStyle
                 &:focus
-                    @include focusStyle
+                    @include HowItWork.focusStyle
                 &:hover
                     color: #2874f0
                     .arrow
@@ -99,7 +99,7 @@
                 width: 220px
                 background-color: white
                 padding: 7px 0px 12px
-                border-color: #ebebeb
+                border-color: HowItWork.$light-grey-border
                 box-shadow: -1px 2px 6px rgba(0, 0, 0, 0.25)
                 @media screen and ( min-width:768px  )
                     border-width: 1px
@@ -115,7 +115,7 @@
                 position: absolute
                 left: 50%
                 bottom: 0
-                border-left: 1px solid #ebebeb
+                border-left: 1px solid HowItWork.$light-grey-border
                 height: 1.25rem
                 padding: 0
                 box-sizing: border-box

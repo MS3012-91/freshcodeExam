@@ -1,14 +1,14 @@
-@import '../../pages/HowItWork/HowItWork.module.sass'
+@use '../../pages/HowItWork/HowItWork.module.sass'
 
 .heroSection
     position: relative
     margin-top: 20px
     box-sizing: border-box
-    font-family: Poppins,Helvetica,Arial,sans-serif
+    font-family: HowItWork.$fontPoppins
     font-size: 1rem
     font-weight: 400
     line-height: 1.5
-    color: #1e2022
+    color: HowItWork.$dark
     padding: 32px 15px
     text-align: left
     @media (min-width: 991px)
@@ -42,7 +42,7 @@
             border: 1 px solid transparent
             line-height: 1.5
             background: rgba(55,125,255,.1)
-            color: #377dff
+            color: HowItWork.$primary
             font-size: 0.6876rem
             font-weight: 400
             padding: 0.4375rem 0.9375rem
@@ -61,10 +61,10 @@
                 margin-bottom: 8px
 
             p
-                font-family: Poppins,Helvetica,Arial,sans-serif
+                font-family: HowItWork.$fontPoppins
                 text-align: left
                 font-size: 1rem
-                color: #77838f
+                color: HowItWork.$secondary
                 line-height: 1.7
                 font-weight: 400
                 margin-top: 0
@@ -81,11 +81,11 @@
                 padding: 0.75rem 1rem
                 font-size: 1rem
                 line-height: 1.5
-                background-color: #377dff
+                background-color: HowItWork.$primary
                 border-radius: 6.1875rem
                 min-width: 9.6875rem
-                color: #fff
-                font-family: Poppins,Helvetica,Arial,sans-serif
+                color: HowItWork.$white
+                font-family: HowItWork.$fontPoppins
                 margin-bottom: 8px
                 @media screen and ( min-width:576px  )
                     margin-right: 0.5rem
@@ -97,9 +97,9 @@
                     font-weight: 900
                     margin-right: 0.5rem
                 &:hover
-                    @include hoveredButton
+                    @include HowItWork.hoveredButton
                 &:focus
-                    @include focusStyle
+                    @include HowItWork.focusStyle
 
         .rightSpace
             display: none

@@ -1,24 +1,16 @@
-$blueColor: #377dff
+@use '../../pages/HowItWork/HowItWork.module'
+
 $hoverLinkBlueColor: #0052ea
-$mainFontColor: #1E2022
-$borderColor: #e7eaf3
-$fonts: Poppins, Helvetica, Arial, sans-serif
 
 @mixin linkStyle
-    color: $blueColor
+    color: HowItWork.$primary
     text-decoration: none
     background-color: transparent
     pointer-events: auto
     &:focus
-        @include outlineDecorate
+        @include HowItWork.focusStyle
     &:hover
         color: $hoverLinkBlueColor
-
-@mixin outlineDecorate
-    outline: rgb(99, 154, 249) inset 3px
-    outline-offset: 5px
-    visibility: visible
-    opacity: 1
 
 .sectionWrapper
     padding: 64px 0
@@ -59,19 +51,19 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
             flex-direction: column
             margin-top: 0
             word-wrap: break-word
-            background-color: $blueColor
+            background-color: HowItWork.$primary
             background-clip: border-box
             border-radius: 0.3125rem
-            font-family: $fonts
+            font-family: HowItWork.$fontPoppins
 
             .navigationItem
                 padding: 16px 0
                 cursor: pointer
                 &:focus
-                    @include outlineDecorate
+                    @include HowItWork.focusStyle
                     border-radius: 0.3125rem
                 &:active
-                    @include outlineDecorate
+                    @include HowItWork.focusStyle
                     border-radius: 0.3125rem
 
                 .navigationLink
@@ -80,10 +72,10 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
                     text-decoration: none
                     color: rgba(255, 255, 255, 0.7)
                     &:hover
-                        color: #fff
+                        color: HowItWork.$white
                     &:active
-                        color: #fff
-                        border: 0 solid #e5e7eb
+                        color: HowItWork.$white
+                        border: 0 solid HowItWork.$super-light-grey
                     &:focus
                         color: rgba(255, 255, 255, 0.7)
                         outline: none
@@ -92,18 +84,18 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
         width: 100%
         position: relative
         box-sizing: border-box
-        
+
         .sectionItem:not(:first-child)
             padding-top: 4rem
 
         h3
             font-size: 1.55rem
             font-weight: 600
-            color: $blueColor
+            color: HowItWork.$primary
             line-height: 1.5
             margin-bottom: 0.5rem
             margin-top: 0
-            font-family: $fonts
+            font-family: HowItWork.$fontPoppins
             @media screen and ( min-width: 420px )
                 font-size: 1.75rem
 
@@ -115,12 +107,12 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
             cursor: pointer
             user-select: none
             box-sizing: border-box
-            @media screen and ( min-width: 992px )                
+            @media screen and ( min-width: 992px )
                 &:not(:last-child)
                     padding-bottom: 4rem
             li
                 margin-bottom: 1rem
-                border: 1px solid $borderColor
+                border: 1px solid HowItWork.$super-light-grey
                 border-radius: calc( 0.3175rem - 1px )
 
                 .questionBlock
@@ -129,7 +121,7 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
                     &:hover
                         background-color: #f8fafd
                     &:active
-                        @include outlineDecorate
+                        @include HowItWork.focusStyle
                         border-radius: 0.3125rem
 
                     .button
@@ -143,7 +135,7 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
                         background-color: transparent
                         font-size: 1rem
                         line-height: 1.5
-                        font-family: $fonts
+                        font-family: HowItWork.$fontPoppins
 
                         .contentBlock
                             display: flex
@@ -152,20 +144,20 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
                             justify-content: space-between
                             gap: 8px
                             padding: 0.75rem 1rem
-                            border-bottom: 1px solid $borderColor
+                            border-bottom: 1px solid HowItWork.$super-light-grey
 
                             h4
                                 display: inline-block
                                 width: 100%
                                 text-align: left
                                 display: inline-block
-                                font-family: $fonts
-                                color: $mainFontColor
+                                font-family: HowItWork.$fontPoppins
+                                color: HowItWork.$dark
                                 &:hover
-                                    color: $blueColor
+                                    color: HowItWork.$primary
 
                             i
-                                color: $blueColor
+                                color: HowItWork.$primary
                                 font-weight: 900
                                 font-style: 14px
                                 display: inline-block
@@ -174,12 +166,12 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
                     cursor: text
 
                     p
-                        font-family: $fonts
+                        font-family: HowItWork.$fontPoppins
                         flex-wrap: wrap
                         padding: 1rem
                         box-sizing: border-box
                         word-wrap: break-word
-                        color: $mainFontColor
+                        color: HowItWork.$dark
                         margin: 0
                         text-align: left
                         font-size: 1rem
@@ -210,9 +202,9 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
                         border: none
                         margin: 0
                         box-sizing: border-box
-                        font-family: $fonts
+                        font-family: HowItWork.$fontPoppins
                         line-height: 1.5
-                        color: #1e2022
+                        color: HowItWork.$dark
 
                         div
                             display: inline
@@ -223,7 +215,7 @@ $fonts: Poppins, Helvetica, Arial, sans-serif
         .line
             margin: 0
             border: 0
-            border-top: 1px solid $borderColor
+            border-top: 1px solid HowItWork.$super-light-grey
             border-bottom: none
             box-sizing: content-box
             overflow: visible

@@ -1,3 +1,5 @@
+@use '../../pages/HowItWork/HowItWork.module'
+
 .sectionContainer
     width: 100%
     box-sizing: border-box
@@ -43,7 +45,7 @@
         width: 100%
         padding: 0 15px
         margin: 0 -15px 2rem -15px
-        border-top: 1px solid #e7eaf3
+        border-top: 1px solid HowItWork.$super-light-grey
         @media screen and ( min-width: 768px )
             flex: 0 0 58.33333%
             max-width: 58.33333%
@@ -71,10 +73,18 @@
                     flex: 0 0 25%
                     max-width: 25%
 
-                img
-                    display: flex
+                a
+                    display: inline-block
                     width: 100%
                     max-width: 6rem
-                    height: auto
-                    margin-left: auto
-                    margin-right: auto
+                    height: 100%
+                    &:focus
+                        @include HowItWork.focusStyle
+
+                    img
+                        display: flex
+                        width: 100%
+                        max-width: 6rem
+                        height: auto
+                        margin-left: auto
+                        margin-right: auto

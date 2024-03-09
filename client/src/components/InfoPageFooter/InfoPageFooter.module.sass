@@ -1,8 +1,10 @@
+@use '../../pages/HowItWork/HowItWork.module'
+
 @mixin headerStyle
     padding-bottom: 1.25rem
     font-size: 1.2rem
     line-height: 2rem
-    color: #333333
+    color: HowItWork.$dark-grey
     margin: 0
     font-weight: 700
 
@@ -12,20 +14,13 @@
     width: 100%
     align-self: center
     position: absolute
-    border-top: 1px solid #fff
-
-@mixin focusStyle
-    outline: solid 3px #639af9
-    outline-offset: 5px
-    visibility: visible
-    opacity: 1
-    outline-style: inset
+    border-top: 1px solid HowItWork.$white
 
 .footerContainer
     width: 100%
-    background-color: #ebebeb
-    font-family: "Raleway", sans-serif
-    color: #4a4a4a
+    background-color: HowItWork.$light-grey-border
+    font-family: HowItWork.$fontRaleway
+    color: HowItWork.$light-grey
     line-height: 1.5
     font-size: 1rem
     font-weight: 400
@@ -48,8 +43,8 @@
             padding: 5rem 0 3.75rem 0
             box-sizing: border-box
             border: 0 solid #e5e7eb
-            font-family: "Raleway", sans-serif
-            color: #4a4a4a
+            font-family: HowItWork.$fontRaleway
+            color: HowItWork.$light-grey
             line-height: 1.5
             position: relative
             flex-direction: column
@@ -87,17 +82,17 @@
                     padding-right: 0.25rem
 
                     a
-                        font-family: "Raleway", sans-serif
+                        font-family: HowItWork.$fontRaleway
                         font-size: 0.95rem
                         line-height: 1.5rem
                         font-weight: 400
-                        color: #4a4a4a
+                        color: HowItWork.$light-grey
                         text-decoration: none
                         &:hover
                             color: #0052ea
                             text-decoration: none
                         &:focus
-                            @include focusStyle
+                            @include HowItWork.focusStyle
 
                     .innerList
                         padding: 0 4px 4px 24px
@@ -132,10 +127,10 @@
             h3
                 @include headerStyle
             p
-                font-family: "Raleway", sans-serif
+                font-family: HowItWork.$fontRaleway
                 font-size: 14px
                 line-height: 1.42
-                color: #77838f
+                color: HowItWork.$secondary
                 margin: 0 0 10px
                 text-align: left
                 padding: 0
@@ -145,7 +140,7 @@
                 align-items: center
                 margin-top: 3.5rem
                 width: 100%
-                border: 1px solid #e7eaf3
+                border: 1px solid HowItWork.$super-light-grey
 
                 input
                     flex: 1 1 0%
@@ -161,9 +156,9 @@
                     box-sizing: border-box
                     overflow: visible
                     &::placeholder
-                        font-family: "Raleway", sans-serif
+                        font-family: HowItWork.$fontRaleway
                     &:focus
-                        @include focusStyle
+                        @include HowItWork.focusStyle
 
                 .searchButton
                     display: flex
@@ -177,11 +172,11 @@
                     background-color: #4980ff
                     border-radius: 4px
                     &:focus
-                        @include focusStyle
+                        @include HowItWork.focusStyle
 
                     i
                         font-size: 28px
-                        color: #fff
+                        color: HowItWork.$white
 
         .rightSpace
             width: 100%
@@ -200,21 +195,21 @@
                     display: block
                     width: fit-content
                     padding: 0.75rem 1rem
-                    border: 1px solid #ebebeb
+                    border: 1px solid HowItWork.$light-grey-border
                     border-radius: 8px
                     background-color: #fbfcfe
                     text-decoration: none
                     margin: 0 14px 14px 0
                     &:focus
-                        @include focusStyle
+                        @include HowItWork.focusStyle
 
                     i
                         font-size: 16px
-                        color: #4a4a4a
+                        color: HowItWork.$light-grey
 
                     span
-                        font-family: "Raleway", sans-serif
-                        color: #4a4a4a
+                        font-family: HowItWork.$fontRaleway
+                        color: HowItWork.$light-grey
                         line-height: 1.5
                         box-sizing: border-box
                         margin-left: 14px
@@ -245,11 +240,11 @@
             padding-bottom: 1.25rem
             text-align: center
             span
-                font-family: "Raleway", sans-serif
+                font-family: HowItWork.$fontRaleway
                 font-size: 16px
                 line-height: 24px
                 font-weight: 600
-                color: #4a4a4a
+                color: HowItWork.$light-grey
 
         .textLink
             padding-bottom: 1.25rem
@@ -258,14 +253,14 @@
             a
                 text-decoration: none
                 font-weight: 600
-                color: #4a4a4a
+                color: HowItWork.$light-grey
                 font-size: 0.875rem
                 line-height: 1.25rem
                 overflow-wrap: break-word
                 &:hover
                     color: #0052ea
                 &:focus
-                    @include focusStyle
+                    @include HowItWork.focusStyle
 
         .socialItems
             ul
@@ -276,10 +271,9 @@
                     color: blue
                     &:hover
                         transform: translateY(-3px)
-                        color: #fff
+                        color: HowItWork.$white
                     &:focus
-                        @include focusStyle
+                        @include HowItWork.focusStyle
 
                     i
                         font-size: 24px
-                     
