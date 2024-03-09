@@ -4,8 +4,7 @@ import HowItWorkHeroSection from '../../components/HowItWorkHeroSection/HowItWor
 import InfoPageWaysToUse from '../../components/InfoPageWaysToUse/InfoPageWaysToUse';
 import InfoPageNamingContest from '../../components/InfoPageNamingContest/InfoPageNamingContest';
 import LaunchingAContest from '../../components/LaunchingAContest/LaunchingAContest';
-import Banner from '../../components/Banner/Banner';
-import StatisticsSection from '../../components/StatisticsSection/StatisticsSection';
+import MotivatedSection from '../../components/MotivatedSection/MotivatedSection';
 import CallToAction from '../../components/CallToAction/CallToAction';
 import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import InfoPageFooter from '../../components/InfoPageFooter/InfoPageFooter';
@@ -23,8 +22,7 @@ export default function HowItWork () {
         <hr className={styles.line} />
         <LaunchingAContest />
       </div>
-      <Banner />
-      <StatisticsSection />
+      <MotivatedSection />
       <div className={styles.container}>
         <CallToAction />
       </div>
