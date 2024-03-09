@@ -268,14 +268,18 @@
                     @include focusStyle
 
         .socialItems
-            display: flex
-            column-gap: 1.5rem
-            a
-                &:hover
-                    transform: translateY(-3px)
-                    color: #fff
-                &:focus
-                    @include focusStyle
+            ul
+                display: flex
+                flex-direction: row
+                column-gap: 1.5rem
+                a
+                    color: blue
+                    &:hover
+                        transform: translateY(-3px)
+                        color: #fff
+                    &:focus
+                        @include focusStyle
 
-                i
-                    font-size: 24px
+                    i
+                        font-size: 24px
+                     

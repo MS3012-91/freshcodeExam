@@ -1,5 +1,9 @@
 import React from 'react';
-import { InfoPageFooterData as data, buttons } from './InfoPageFooterData';
+import {
+  InfoPageFooterData as data,
+  buttons,
+  socialData,
+} from './InfoPageFooterData';
 import styles from './InfoPageFooter.module.sass';
 
 export default function InfoPageFooter () {
@@ -10,21 +14,21 @@ export default function InfoPageFooter () {
           {data.map(info => (
             <div className={styles.navigationBlock} key={info.id}>
               <h3>{info.title}</h3>
-              {info.links.map(link => (
-                <ul>
+              <ul>
+                {info.links.map(link => (
                   <li key={link.id}>
                     <a href={link.href}>{link.title}</a>
-                    {link.variants &&
-                      link.variants.map(variant => (
-                        <ul>
+                    <ul>
+                      {link.variants &&
+                        link.variants.map(variant => (
                           <li key={variant.id} className={styles.innerList}>
                             <a href={variant.href}> {variant.variant}</a>
                           </li>
-                        </ul>
-                      ))}
+                        ))}
+                    </ul>
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
             </div>
           ))}
         </nav>
@@ -36,7 +40,7 @@ export default function InfoPageFooter () {
               along with a matching, premium domain name. Buy instantly for a
               fixed low price.
             </p>
-            <form method='get' onsubmit='#'>
+            <form method='get' onSubmit={() => {}}>
               <input
                 className={styles.footerInput}
                 type='text'
@@ -83,29 +87,17 @@ export default function InfoPageFooter () {
             </a>
           </div>
           <div className={styles.socialItems}>
-            <a
-              href='https://www.linkedin.com/company/squadhelp/'
-              target='_blank'
-            >
-              <span aria-label='Linkedin'>
-                <i className='fab fa-linkedin-in'></i>
-              </span>
-            </a>
-            <a href='https://www.instagram.com/squadhelpinc/' target='_blank'>
-              <span aria-label='Instagram'>
-                <i className='fab fa-instagram'></i>
-              </span>
-            </a>
-            <a href='https://twitter.com/squadhelp' target='_blank'>
-              <span aria-label='Twitter'>
-                <i className='fab fa-twitter'></i>
-              </span>
-            </a>
-            <a href='https://www.facebook.com/squadhelpinc' target='_blank'>
-              <span aria-label='Facebook'>
-                <i className='fab fa-facebook-square'></i>
-              </span>
-            </a>
+            <ul>
+              {socialData.map(info => (
+                <li key={info.id}>
+                  <a href={info.link}>
+                    <span aria-label={info.imageText}>
+                      <i className={info.imageClass}></i>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -260,3 +260,30 @@ export const buttons = [
     title: '5-letter',
   },
 ];
+
+export const socialData = [
+  {
+    id: 1,
+    link: 'https://www.linkedin.com/company/squadhelp/',
+    imageText: 'Linkedin',
+    imageClass: 'fab fa-linkedin-in'
+  },
+  {
+    id: 2,
+    link: 'https://www.instagram.com/squadhelpinc/',
+    imageText: 'Instagram',
+    imageClass: 'fab fa-instagram'
+  },
+  {
+    id: 3,
+    link: 'https://twitter.com/squadhelp',
+    imageText: 'Twitter',
+    imageClass: 'fab fa-twitter'
+  },
+  {
+    id: 4,
+    link: 'https://www.facebook.com/squadhelpinc',
+    imageText: 'Facebook',
+    imageClass: 'fab fa-facebook-square'
+  }
+]
