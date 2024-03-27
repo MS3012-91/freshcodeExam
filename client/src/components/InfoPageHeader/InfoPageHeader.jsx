@@ -1,16 +1,26 @@
 import React from 'react';
-import Logo from '../Logo/Logo';
-import { topHeaderData } from './HeaderNavigationData';
-import NavigationMenu from '../NavigationMenu/NavigationMenu';
+import { topHeaderData, appMenu } from './HeaderNavigationData';
+import NavMenu from '../NavMenu/NavMenu';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import CONSTANTS from '../../constants';
 import styles from './InfoPageHeader.module.sass';
 
 export default function InfoPageHeader () {
   return (
-    <div className={styles.navbar}>
+    <header className={styles.navbar}>
       <div className={styles.topHeader}>
         <div className={styles.topHeaderContent}>
-          <Logo className={styles.logo} />
+          <div className={styles.logo}>
+            <Link to='/'>
+              <img
+                src={
+                  `${CONSTANTS.STATIC_IMAGES_PATH}` +
+                  'howItWorkPage/logo_white.svg'
+                }
+                alt='logo'
+              />
+            </Link>
+          </div>
           <form className={styles.searchForm} action='#'>
             <input
               type='search'
@@ -39,10 +49,15 @@ export default function InfoPageHeader () {
                       <ul>
                         {info.items.map(item => (
                           <li key={item.id}>
-                            <span aria-label={item.title}>
-                              <i className={item.image} />
-                            </span>
-                            {item.title}
+                            <a href={item.link}>
+                              <span
+                                aria-label={item.title}
+                                className={styles.insideImage}
+                              >
+                                <i className={item.image} />
+                              </span>
+                              {item.title}
+                            </a>
                           </li>
                         ))}
                       </ul>
@@ -59,7 +74,9 @@ export default function InfoPageHeader () {
           </nav>
         </div>
       </div>
-      <NavigationMenu />
-    </div>
+      <nav className={styles.bottomNavigation}>
+        <NavMenu data={appMenu} level={0} />
+      </nav>
+    </header>
   );
 }

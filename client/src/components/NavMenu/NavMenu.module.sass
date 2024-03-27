@@ -1,0 +1,155 @@
+@use '../../pages/HowItWork/HowItWork.module.sass'
+
+a
+    text-decoration: none
+    width: 100%
+    color: HowItWork.$light-grey
+    font-family: HowItWork.$fontRaleway
+    background: transparent
+    border: none
+    text-transform: capitalize
+    box-sizing: border-box
+    padding: 14px 11.5px
+    font-size: 14px
+    &:active, &:focus, &:focus-within
+        outline: none
+    &:focus, &:focus-within
+        @include HowItWork.focusStyle
+    &:hover
+        color: #2874f0
+
+.dropdownMenu
+    display: none
+    margin: auto
+    position: absolute
+    top: 50px
+    visibility: visible
+    max-width: 250px
+    max-height: 90vh
+    overflow: visible
+    border-color: HowItWork.$light-grey-border
+    background-color: HowItWork.$white
+    box-shadow: -1px 2px 6px rgba(0, 0, 0, 0.25)
+    border-radius: 8px
+    z-index: 10
+    ul
+        >li
+            display: block
+            box-sizing: border-box
+            align-self: flex-start
+            position: relative
+            .arrow
+                transform: translateX(45deg)
+            a
+                font-weight: 400
+                line-height: 2
+
+        .subList
+            pointer-events: none
+            li
+                margin-left: 12px
+                pointer-events: auto
+                a
+                    line-height: 1.25
+
+.bottomNavigation
+    display: flex
+    align-items: center
+    justify-content: center
+    @media screen and ( max-width: 768px )
+        display: none
+    >ul
+        display: flex
+        box-sizing: border-box
+        width: 100%
+        flex-direction: row
+        align-items: baseline
+        height: 100%
+        justify-content: space-between
+        padding-left: 0.25rem
+        padding-right: 0px
+        max-width: 1188px
+        margin: 0 auto
+        flex-wrap: wrap
+        @media screen and ( max-width: 1240px )
+            justify-content: center
+            max-width: 1188px
+        @media screen and ( min-width: 1536px )
+            max-width: 1280px
+        @media screen and ( min-width: 1600px )
+            max-width: 1536px
+
+        >li
+            position: relative
+            display: flex
+            justify-content: center
+            flex: 1
+            height: 100%
+            flex-basis: max-content
+            width: 100%
+            box-sizing: border-box
+            flex-wrap: nowrap
+            &:nth-last-child(2)
+                order: 2
+                justify-content: flex-end
+            &:last-child
+                order: 1
+                padding: 0
+                margin: 0
+            &:focus
+                @include HowItWork.focusStyle
+            .arrow
+                transform: rotate(-90deg)
+            >&:focus, &:hover, &:focus-within
+                .level1
+                    display: flex
+                    z-index: 1
+                .arrow
+                    transform: rotate(90deg)
+                    color: #2874f0
+
+.arrow
+    font-family: HowItWork.$fontRaleway
+    display: inline-block
+    color: HowItWork.$light-grey
+    font-weight: 300
+    font-size: 14px
+    margin-left: 10px
+
+.decorateItem
+    flex: 1
+    width: 100%
+    position: relative
+    .decorateElement
+        width: 1px
+        position: absolute
+        left: 25%
+        bottom: 0
+        border-left: 1px solid HowItWork.$light-grey-border
+        height: 1.25rem
+        padding: 0
+        box-sizing: border-box
+
+.dropdownMenu.level1
+    .withArrow
+        >a
+            font-weight: 600
+            line-height: 2
+            .arrow
+                transform: rotate(-90deg)
+        &:hover, &:focus-within
+            a
+                .arrow
+                    transform: rotate(180deg)
+                .level2
+                    display: flex
+
+.level2
+    position: absolute
+    display: none
+    gap: 0
+    right: 100%
+    top: 10%
+    width: 250px
+    margin: 0
+    padding: 8px 16px
